@@ -1,1 +1,1 @@
-Sitemap: https://alexlenail.github.io/back_of_my_envelope/sitemap.xml
+Sitemap: https://alexlenail.me/back_of_my_envelope/sitemap.xml
