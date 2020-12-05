@@ -16,17 +16,6 @@
   
 
   
-      ,"page1": {
-          "title": "About",
-          "content": "",
-          "url": "https://alexlenail.me/back_of_my_envelope/about/",
-          "relUrl": "/about/",
-          "date": ""
-      }
-      
-  
-
-  
 
   
   
@@ -48,7 +37,7 @@
   
 
   
-      ,"page10": {
+      ,"page9": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://alexlenail.me/back_of_my_envelope/robots.txt",
