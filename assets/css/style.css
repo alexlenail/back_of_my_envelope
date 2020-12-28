@@ -405,14 +405,6 @@ table { white-space: normal; max-width: 100%; font-size: 100%; border: none; }
 
 table th { text-align: center !important; }
 
-::-webkit-scrollbar { width: 14px; height: 18px; }
-
-::-webkit-scrollbar-thumb { height: 6px; border: 4px solid rgba(0, 0, 0, 0); background-clip: padding-box; -webkit-border-radius: 7px; background-color: #9D9D9D; -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05); }
-
-::-webkit-scrollbar-button { width: 0; height: 0; display: none; }
-
-::-webkit-scrollbar-corner { background-color: transparent; }
-
 .output_text.output_execute_result pre { white-space: pre-wrap; }
 
 .svg-icon.orange { width: 30px; height: 23px; }
@@ -422,60 +414,59 @@ table th { text-align: center !important; }
 pre code { font-size: 15px !important; }
 
 /*-----------------------------------*/
+/*----- SYNTAX HIGHLIGHTING THEMES --*/
+/*-----------------------------------*/
 /*----- ADD YOUR STYLES BELOW -------*/
-.language-python + .language-plaintext { border-left: 1px solid grey; margin-left: 1rem !important; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_I.otf"); font-weight: 400; font-style: normal; }
 
-[class^="language-"]:not(.language-plaintext) pre, [class^="language-"]:not(.language-plaintext) code { background-color: #323443 !important; color: #f8f8f2; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_DR.otf"); font-weight: 300; font-style: normal; }
 
-.language-python + .language-plaintext code { background-color: white !important; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_R.otf"); font-weight: 400; font-style: normal; }
 
-.language-python + .language-plaintext pre { background-color: white !important; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_RI.otf"); font-weight: 400; font-style: italic; }
 
-.input_area pre, .input_area div { margin-bottom: 1.0rem !important; margin-top: 1.5rem !important; padding-bottom: 0 !important; padding-top: 0 !important; background: #323443 !important; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; font-family: Menlo, Monaco, Consolas, "Lucida Console", Roboto, Ubuntu, monospace; border-radius: 5px; font-size: 105%; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_RZ.otf"); font-weight: 600; font-style: normal; }
 
-.output_area pre, .output_area div { margin-bottom: 1rem !important; margin-top: 0rem !important; padding-bottom: 0 !important; padding-top: 0 !important; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_RZI.otf"); font-weight: 600; font-style: italic; }
 
-.input_area pre { border-left: 1px solid lightcoral; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_RB.otf"); font-weight: 700; font-style: normal; }
 
-.output_area pre { border-left: 1px solid grey; margin-left: 1rem !important; font-size: 16px; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_RBI.otf"); font-weight: 700; font-style: italic; }
 
-.code_cell table { width: auto; }
+@font-face { font-family: "Biolinum"; src: url("../../assets/fonts/linux_biolinum/LinBiolinum_R.otf"); font-weight: 400; font-style: normal; }
 
-/* Dracula Theme v1.2.5 https://github.com/zenorocha/dracula-theme Copyright 2016, All rights reserved Code licensed under the MIT license */
-.highlight { background: #323443 !important; color: #f8f8f2 !important; }
+@font-face { font-family: "Biolinum"; src: url("../../assets/fonts/linux_biolinum/LinBiolinum_RI.otf"); font-weight: 400; font-style: italic; }
 
-.highlight pre, .highlight code { background: #323443; color: #f8f8f2; font-size: 110%; }
+@font-face { font-family: "Biolinum"; src: url("../../assets/fonts/linux_biolinum/LinBiolinum_RB.otf"); font-weight: 700; font-style: normal; }
 
-.highlight .hll, .highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx, .highlight .sr, .highlight .s1, .highlight .ss { color: #e7997a; }
+article.post { max-width: 100vw !important; width: 100vw; padding: 0; margin: 0; margin-left: calc(-1 * ((100vw - 100%) / 2)); }
 
-.highlight .go { color: #44475a; }
+.rendered_html p { font-size: 1.4rem !important; }
 
-.highlight .err, .highlight .g, .highlight .l, .highlight .n, .highlight .x, .highlight .ge, .highlight .gr, .highlight .gh, .highlight .gi, .highlight .gp, .highlight .gs, .highlight .gu, .highlight .gt, .highlight .ld, .highlight .no, .highlight .nd, .highlight .pi, .highlight .ni, .highlight .ne, .highlight .nn, .highlight .nx, .highlight .py, .highlight .w, .highlight .bp { color: #f8f8f2; background-color: #323443 !important; }
+.text_cell, .post-title, .site-title, h3 { font-family: "Libertine" !important; }
 
-.highlight .p { font-weight: bold; color: #66d9ef; }
+.site-title { float: unset; }
 
-.highlight .ge { text-decoration: underline; }
+.site-header .wrapper { text-align: center !important; }
 
-.highlight .bp { font-style: italic; }
+.text_cell_render, .output, .post-header { max-width: 940px !important; margin-left: 60px; }
 
-.highlight .c, .highlight .ch, .highlight .cm, .highlight .cpf, .highlight .cs { color: #6272a4; }
+.output_png { max-width: 800px; }
 
-.highlight .c1 { color: gray; }
+pre { padding-left: 60px; }
 
-.highlight .kd, .highlight .kt, .highlight .nb, .highlight .nl, .highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi, .highlight .vm { color: #8be9fd; }
+.output pre { background-color: inherit !important; border: none; border-left: 3px solid lightgray; padding-left: 15px; }
 
-.highlight .kd, .highlight .nb, .highlight .nl, .highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi, .highlight .vm { font-style: italic; }
+.katex { font-size: 1em !important; }
 
-.highlight .fm, .highlight .na, .highlight .nc, .highlight .nf { color: #ace591; }
+table.dataframe th, table.dataframe td { padding: 3px 10px !important; }
 
-.highlight .k, .highlight .o, .highlight .cp, .highlight .kc, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .nt, .highlight .ow { color: #ff79c6; }
+table.dataframe { width: auto !important; text-align: right; font-family: -apple-system, BlinkMacSystemFont, 'Roboto', "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-weight: 500; margin-bottom: 1px; }
 
-.highlight .kc { color: #ace591; }
+table.dataframe + p { margin-top: 0 !important; font-size: 0.7rem !important; }
 
-.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .mo, .highlight .il { color: #bd93f9; }
+h1.post-title { font-size: 3rem !important; margin: 0 !important; }
 
-.highlight .gd { color: #ff5555; }
-
-p code { font-size: 19px; }
+.post-meta-title { margin-top: 0 !important; }
 
 /*# sourceMappingURL=style.css.map */
