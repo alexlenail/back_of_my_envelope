@@ -1,11 +1,108 @@
 /*-----------------------------------*/
 /*--- IMPORT STYLES FOR FASTPAGES ---*/
-@import "minima/fastpages-styles";   
+@import "minima/fastpages-styles";
 
+/*-----------------------------------*/
+/*----- SYNTAX HIGHLIGHTING THEMES --*/
 
+// @import "minima/fastpages-dracula-highlight";
+// @import "minima/base16";
+// @import "minima/monokai";
+// @import "minima/pygments";
 
 /*-----------------------------------*/
 /*----- ADD YOUR STYLES BELOW -------*/
 
-// If you want to turn off dark background for syntax highlighting, comment or delete the below line.
-@import "minima/fastpages-dracula-highlight"; 
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_I.otf"); font-weight: 400; font-style: normal; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_DR.otf"); font-weight: 300; font-style: normal; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_R.otf"); font-weight: 400; font-style: normal; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_RI.otf"); font-weight: 400; font-style: italic; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_RZ.otf"); font-weight: 600; font-style: normal; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_RZI.otf"); font-weight: 600; font-style: italic; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_RB.otf"); font-weight: 700; font-style: normal; }
+@font-face { font-family: "Libertine"; src: url("../../assets/fonts/linux_libertine/LinLibertine_RBI.otf"); font-weight: 700; font-style: italic; }
+
+@font-face { font-family: "Biolinum"; src: url("../../assets/fonts/linux_biolinum/LinBiolinum_R.otf"); font-weight: 400; font-style: normal; }
+@font-face { font-family: "Biolinum"; src: url("../../assets/fonts/linux_biolinum/LinBiolinum_RI.otf"); font-weight: 400; font-style: italic; }
+@font-face { font-family: "Biolinum"; src: url("../../assets/fonts/linux_biolinum/LinBiolinum_RB.otf"); font-weight: 700; font-style: normal; }
+
+
+
+article.post {
+    max-width: 100vw !important;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    margin-left: calc(-1 * ((100vw - 100%) / 2));
+}
+
+.rendered_html p {
+    font-size: 1.4rem !important;
+}
+
+.text_cell, .post-title, .site-title, h3 {
+    font-family: "Libertine" !important;
+}
+
+.site-title { float: unset; }
+
+.site-header .wrapper {
+    text-align: center !important;
+}
+
+.text_cell_render, .output, .post-header {
+    max-width: 940px !important;
+    margin-left: 60px;
+}
+
+.output_png { max-width: 800px; }
+
+pre { padding-left: 60px; }
+
+// .code_cell, pre {
+//     margin-top: 0.5rem !important;
+//     margin-bottom: 0.5rem !important;
+// }
+
+.output pre {
+    background-color: inherit !important;
+    border: none;
+    border-left: 3px solid lightgray;
+    padding-left: 15px;
+}
+
+.katex {
+    font-size: 1em !important;
+}
+
+
+table.dataframe th, table.dataframe td {
+    padding: 3px 10px !important;
+}
+
+// table.dataframe tbody th {
+//     text-align: left;
+// }
+
+table.dataframe {
+    width: auto !important;
+    text-align: right;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    margin-bottom: 1px;
+}
+
+table.dataframe + p {
+    margin-top: 0 !important;
+    font-size: 0.7rem !important;
+}
+
+h1.post-title {
+    font-size: 3rem !important;
+    margin: 0 !important;
+}
+
+.post-meta-title {
+    margin-top: 0 !important;
+}
+
