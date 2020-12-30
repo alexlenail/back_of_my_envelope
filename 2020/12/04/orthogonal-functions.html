@@ -4,17 +4,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Fourrier Basis | Back of my Envelope</title>
+<title>Orthogonal Functions | Back of my Envelope</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Fourrier Basis" />
+<meta property="og:title" content="Orthogonal Functions" />
 <meta property="og:locale" content="en_US" />
+<meta name="description" content="What does it mean for functions to be orthogonal?" />
+<meta property="og:description" content="What does it mean for functions to be orthogonal?" />
 <link rel="canonical" href="https://alexlenail.me/back_of_my_envelope/2020/12/04/orthogonal-functions.html" />
 <meta property="og:url" content="https://alexlenail.me/back_of_my_envelope/2020/12/04/orthogonal-functions.html" />
 <meta property="og:site_name" content="Back of my Envelope" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-12-04T00:00:00-06:00" />
 <script type="application/ld+json">
-{"url":"https://alexlenail.me/back_of_my_envelope/2020/12/04/orthogonal-functions.html","@type":"BlogPosting","headline":"Fourrier Basis","dateModified":"2020-12-04T00:00:00-06:00","datePublished":"2020-12-04T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://alexlenail.me/back_of_my_envelope/2020/12/04/orthogonal-functions.html"},"@context":"https://schema.org"}</script>
+{"url":"https://alexlenail.me/back_of_my_envelope/2020/12/04/orthogonal-functions.html","@type":"BlogPosting","headline":"Orthogonal Functions","dateModified":"2020-12-04T00:00:00-06:00","datePublished":"2020-12-04T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://alexlenail.me/back_of_my_envelope/2020/12/04/orthogonal-functions.html"},"description":"What does it mean for functions to be orthogonal?","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/back_of_my_envelope/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://alexlenail.me/back_of_my_envelope/feed.xml" title="Back of my Envelope" />
 
@@ -98,7 +100,7 @@ window.onload = wrap_img;
 </div>
       </div>
     <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Fourrier Basis</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-12-04T00:00:00-06:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Orthogonal Functions</h1><p class="page-description">What does it mean for functions to be orthogonal?</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-12-04T00:00:00-06:00" itemprop="datePublished">
         Dec 4, 2020
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -157,6 +159,12 @@ window.onload = wrap_img;
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Fourier-Basis">Fourier Basis<a class="anchor-link" href="#Fourier-Basis"> </a></h1>
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -169,7 +177,7 @@ window.onload = wrap_img;
 <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">grid</span>
 <span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">domain</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">fourrier</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">sin</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">cos</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fourier</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">sin</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">cos</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -188,7 +196,7 @@ window.onload = wrap_img;
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
 
-<span class="n">basis</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">fourrier</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)},</span> <span class="n">index</span><span class="o">=</span><span class="n">grid</span><span class="p">)</span>
+<span class="n">basis</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">fourier</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)},</span> <span class="n">index</span><span class="o">=</span><span class="n">grid</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">lw</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="n">domain</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="s1">&#39;0.3&#39;</span><span class="p">)</span>
 </pre></div>
@@ -297,7 +305,7 @@ window.onload = wrap_img;
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>"fourrier modes as eigenfunctions of the derivative operator" What?</p>
+<p>"fourier modes as eigenfunctions of the derivative operator" What?</p>
 
 </div>
 </div>
