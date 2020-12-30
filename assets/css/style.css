@@ -415,7 +415,7 @@ pre code { font-size: 15px !important; }
 
 /*-----------------------------------*/
 /*----- SYNTAX HIGHLIGHTING THEMES --*/
-pre, code { background-color: #fff !important; border: none; font-size: 0.8rem !important; }
+pre, code { background-color: #fff !important; border: none; }
 
 /* Error */
 .highlight .err { border: 1px solid #FF0000; }
@@ -647,5 +647,19 @@ table.dataframe + p { margin-top: 0 !important; font-size: 0.7rem !important; }
 h1.post-title { font-size: 3rem !important; margin: 0 !important; }
 
 .post-meta-title { margin-top: 0 !important; }
+
+/*-----------------------------------*/
+/*----- COLLAPSE --------------------*/
+.collapsible { position: relative; }
+
+.collapsed { height: 1.9rem; overflow-y: hidden; }
+
+.collapse-button { position: absolute; top: 0.21rem; left: 0; font-size: 1.2rem; width: 60px; text-align: center; }
+
+.collapsed > .collapse-button { background: #e0e0e0; background: linear-gradient(90deg, #e0e0e0 0%, white 35%, white 100%); }
+
+.collapse-button > i { color: #b7b7b7; }
+
+.collapse-button > i:hover { color: #1f1f1f; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,28 +1,39 @@
 {
   
-
-  
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
+    
+        "post0": {
+            "title": "Fourrier Basis",
+            "content": "# imports import numpy as np import pandas as pd import matplotlib.pyplot as plt import scipy.stats %matplotlib inline plt.rcParams[&#39;figure.figsize&#39;] = [12, 5] plt.rcParams[&#39;figure.dpi&#39;] = 140 π = np.pi exp = np.exp sin = np.sin cos = np.cos sqrt = np.sqrt . grid = 200 domain = [0, 2*π] dx = (domain[1]-domain[0])/grid grid = np.linspace(*domain, grid) def fourrier(k, x): return sin(k*x)+cos(k*x) . n = 5 basis = pd.DataFrame({k: fourrier(k, grid) for k in range(1,n)}, index=grid) ax = basis.plot.line(lw=0.4, xlim=domain) ax.axhline(0, c=&#39;black&#39;, lw=&#39;0.3&#39;) . &lt;matplotlib.lines.Line2D at 0x136a4e890&gt; . from scipy import integrate def compare_two(i, j): product = pd.Series(basis[i]*basis[j], name=&#39;product&#39;) product = pd.DataFrame([basis[i], basis[j], product]).T ax = product.plot.line(lw=0.5, color=[&#39;red&#39;, &#39;blue&#39;, &#39;purple&#39;]) ax.fill_between(grid, product[&#39;product&#39;], alpha=0.1) return integrate.trapz(product[&#39;product&#39;], x=product.index) . print(&#39;integral =&#39;, np.round(compare_two(3,4), 4)) . integral = -0.0 . &quot;fourrier modes as eigenfunctions of the derivative operator&quot; What? . Polynomial Bases .",
+            "url": "https://alexlenail.me/back_of_my_envelope/2020/12/04/orthogonal-functions.html",
+            "relUrl": "/2020/12/04/orthogonal-functions.html",
+            "date": " • Dec 4, 2020"
+        }
+        
+    
   
 
   
   
 
   
+
+  
   
 
   
-      "page7": {
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+      ,"page7": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://alexlenail.me/back_of_my_envelope/robots.txt",
