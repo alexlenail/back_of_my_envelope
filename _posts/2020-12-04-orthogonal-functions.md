@@ -1,6 +1,7 @@
 ---
 keywords: fastai
-title: Fourrier Basis
+description: What does it mean for functions to be orthogonal?
+title: Orthogonal Functions
 nb_path: _notebooks/2020-12-04-orthogonal-functions.ipynb
 layout: notebook
 ---
@@ -48,6 +49,12 @@ layout: notebook
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Fourier-Basis">Fourier Basis<a class="anchor-link" href="#Fourier-Basis"> </a></h1>
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -60,7 +67,7 @@ layout: notebook
 <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">grid</span>
 <span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">domain</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">fourrier</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">sin</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">cos</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fourier</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">sin</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">cos</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -79,7 +86,7 @@ layout: notebook
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
 
-<span class="n">basis</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">fourrier</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)},</span> <span class="n">index</span><span class="o">=</span><span class="n">grid</span><span class="p">)</span>
+<span class="n">basis</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">fourier</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)},</span> <span class="n">index</span><span class="o">=</span><span class="n">grid</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">basis</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">lw</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="n">domain</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="s1">&#39;0.3&#39;</span><span class="p">)</span>
 </pre></div>
@@ -190,7 +197,7 @@ layout: notebook
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>"fourrier modes as eigenfunctions of the derivative operator" What?</p>
+<p>"fourier modes as eigenfunctions of the derivative operator" What?</p>
 
 </div>
 </div>
