@@ -72,14 +72,14 @@ pre {
 
 li {
   h3, h4 {
-  margin-top:.05rem !important;
-  margin-bottom:.05rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
   }
   .post-meta-description {
     color: rgb(88, 88, 88);
     font-size: 15px;
-    margin-top:.05rem !important;
-    margin-bottom:.05rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
 }
 
@@ -151,10 +151,10 @@ h6:hover .anchor-link {
 }
 
 .page-description {
-  margin-top: .5rem !important;
-  margin-bottom: .5rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
   color: #585858;
-  font-size: 115%;
+  font-size: 1.4rem;
 }
 
 // Custom styling for category tags
