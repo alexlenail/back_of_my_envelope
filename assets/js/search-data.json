@@ -16,11 +16,27 @@
   
 
   
+      ,"page1": {
+          "title": "About",
+          "content": "",
+          "url": "https://alexlenail.me/back_of_my_envelope/about/",
+          "relUrl": "/about/",
+          "date": ""
+      }
+      
+  
 
   
-  
 
   
+      ,"page3": {
+          "title": "Old Blog",
+          "content": "",
+          "url": "https://alexlenail.me/back_of_my_envelope/old/",
+          "relUrl": "/old/",
+          "date": ""
+      }
+      
   
 
   
@@ -35,12 +51,29 @@
   
       ,"page7": {
           "title": "",
+          "content": "{“/about/”:”http://alexlenail.me”,”/old/”:”https://alexlenail.medium.com/”} .",
+          "url": "https://alexlenail.me/back_of_my_envelope/redirects.json",
+          "relUrl": "/redirects.json",
+          "date": ""
+      }
+      
+  
+
+  
+  
+
+  
+      ,"page9": {
+          "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://alexlenail.me/back_of_my_envelope/robots.txt",
           "relUrl": "/robots.txt",
           "date": ""
       }
       
+  
+
+  
   
 
 }
