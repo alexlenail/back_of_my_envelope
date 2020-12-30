@@ -27,7 +27,6 @@
 // @font-face { font-family: "Biolinum"; src: url("../../assets/fonts/linux_biolinum/LinBiolinum_RB.otf"); font-weight: 700; font-style: normal; }
 
 
-
 article.post {
     max-width: 100vw !important;
     width: 100vw;
@@ -110,4 +109,34 @@ h1.post-title {
 .post-meta-title {
     margin-top: 0 !important;
 }
+
+
+/*-----------------------------------*/
+/*----- COLLAPSE --------------------*/
+
+.collapsible {
+    position: relative;
+}
+
+.collapsed {
+    height: 1.9rem;
+    overflow-y: hidden;
+}
+
+.collapse-button {
+    position: absolute;
+    top: 0.21rem;
+    left: 0;
+    font-size: 1.2rem;
+    width: 60px;
+    text-align: center
+}
+
+.collapsed > .collapse-button {
+    background: rgb(224,224,224);
+    background: linear-gradient(90deg, rgba(224,224,224,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,1) 100%);
+}
+
+.collapse-button > i { color: #b7b7b7; }
+.collapse-button > i:hover { color:#1f1f1f; }
 
