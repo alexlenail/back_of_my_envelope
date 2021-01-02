@@ -27,7 +27,7 @@
 // @font-face { font-family: "Biolinum"; src: url("../../assets/fonts/linux_biolinum/LinBiolinum_RB.otf"); font-weight: 700; font-style: normal; }
 
 
-article.post {
+article.post, .footer-col-wrapper {
     max-width: 100vw !important;
     width: 100vw;
     padding: 0;
@@ -55,9 +55,14 @@ article.post {
     margin-left: 60px;
 }
 
-.output_png { max-width: 800px; }
+.output_png img {
+    width: auto !important;
+    height: auto !important;
+    max-width: 800px;
+    margin: 0;
+}
 
-pre {
+pre, .footer-col-wrapper {
     // border-left: 15px solid lightsteelblue;
     // padding-left: 45px;
     padding-left: 60px;
