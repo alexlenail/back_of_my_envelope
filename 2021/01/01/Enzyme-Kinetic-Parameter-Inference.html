@@ -30,6 +30,7 @@
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         renderMathInElement( document.body, {
+        globalGroup: true,
         delimiters: [
             {left: "$$", right: "$$", display: true},
             {left: "[%", right: "%]", display: true},
@@ -117,7 +118,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      6 min read
+      8 min read
     
 </span></p>
 
@@ -196,11 +197,26 @@ window.onload = wrap_img;
 
 <div class="output_area">
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>The jupyternotify extension is already loaded. To reload it, use:
-  %reload_ext jupyternotify
-</pre>
+
+
+
+<div id="ad75e6df-fa7e-4e77-a81e-3b20b4423140"></div>
+<div class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#ad75e6df-fa7e-4e77-a81e-3b20b4423140');
+if (!("Notification" in window)) {
+    alert("This browser does not support desktop notifications, so the %%notify magic will not work.");
+} else if (Notification.permission !== 'granted' && Notification.permission !== 'denied') {
+    Notification.requestPermission(function (permission) {
+        if(!('permission' in Notification)) {
+            Notification.permission = permission;
+        }
+    })
+}
+
+</script>
 </div>
+
 </div>
 
 </div>
@@ -304,22 +320,32 @@ window.onload = wrap_img;
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>\usepackage{chemfig}</p>
-<p>Chemical reactions in cells are catalyzed by enzymes, which confer rate accelerations to those reactions. Mathematical biologists seek to model enzyme-catalyzed chemical kinetics with differential equations. Consider the following formalism for enzymatically-catalyzed chemical reactions:</p>
-\begin{equation}
-E+S \underset{k_{-1}}{\overset{k_1}{\rightleftarrows}} ES \underset{k_{-2}}{\overset{k_2}{\rightleftarrows}}E+P
-\end{equation}<p>\schemestart
-E + S \arrow{&lt;=&gt;[$k_{\mathrm{on}}$][$k_{\mathrm{off}}$]} ES \arrow{&lt;=&gt;[$k_{\mathrm{cat}}$][$k_{\mathrm{uncat}}$]} P + E
-\schemestop</p>
+$$\newcommand{\kon}{k_{\mathrm{on}}}
+\newcommand{\koff}{k_{\mathrm{off}}}
+\newcommand{\kcat}{k_{\mathrm{cat}}}
+\newcommand{\kuncat}{k_{\mathrm{uncat}}}
+\newcommand{\dSdt}{\frac{d[\mathrm{S}]}{dt}}
+\newcommand{\dEdt}{\frac{d[\mathrm{E}]}{dt}}
+\newcommand{\dESdt}{\frac{d[\mathrm{ES}]}{dt}}
+\newcommand{\dPdt}{\frac{d[\mathrm{P}]}{dt}}$$<p>Chemical reactions in cells are catalyzed by enzymes, which confer rate accelerations to those reactions. Mathematical biologists seek to model enzyme-catalyzed chemical kinetics with differential equations. Consider the following formalism for enzymatically-catalyzed chemical reactions:</p>
+<p>
+$$ E+S \underset{\koff}{\overset{\kon}{\rightleftarrows}} ES \underset{\kuncat}{\overset{\kcat}{\rightleftarrows}}E+P $$
+</p>
+<p>In this scheme E is an enzyme, S is its substrate, ES is the enzyme-substrate complex, which is an intermediate, and P is the product of the reaction. Each of those chemical species has a concentration in a fixed volume, which we denote with brackets (e.g. [E]). Four reactions are included: enzyme-substrate association, dissociation, enzyme catalysis of substrate into product, and enzyme-product re-association (uncatalysis). Each reaction has a linear rate in the concentrations with associated rate constants: $k_{\mathrm{on}}$, $k_{\mathrm{off}}$, $k_{\mathrm{cat}}$, $k_{\mathrm{uncat}}$ which comprise the 4 degrees of freedom in our kinetics. The 'direction' of the reaction, and the designation of 'substrate' and 'product' is our choice -- the model is entirely symmetric, which is reflected in the associated ODEs:</p>
+$$\begin{aligned}
+    \frac{d[\mathrm{S}]}{dt} &amp;= k_{\mathrm{off}}[\mathrm{ES}] - k_{\mathrm{on}}[\mathrm{E}][\mathrm{S}] \\
+    \frac{d[\mathrm{E}]}{dt} &amp;= k_{\mathrm{off}}[\mathrm{ES}] - k_{\mathrm{on}}[\mathrm{E}][\mathrm{S}] + k_{\mathrm{cat}}[\mathrm{ES}] - k_{\mathrm{uncat}}[\mathrm{E}][\mathrm{P}] \\
+    \frac{d[\mathrm{ES}]}{dt} &amp;= - k_{\mathrm{off}}[\mathrm{ES}] + k_{\mathrm{on}}[\mathrm{E}][\mathrm{S}] - k_{\mathrm{cat}}[\mathrm{ES}] + k_{\mathrm{uncat}}[\mathrm{E}][\mathrm{P}] \\
+    \frac{d[\mathrm{P}]}{dt} &amp;= k_{\mathrm{cat}}[\mathrm{ES}] - k_{\mathrm{uncat}}[\mathrm{E}][\mathrm{P}] 
+\end{aligned}$$<p>The assumption made to derive these equations is that the molecular species are 'well-mixed' in solution, permitting us to invoke the 'Law of Mass Action'. We note here that the intracellular environment is not best described as well-mixed, and models of 'Macromolecular Crowding' have led to more accurate rate laws for these reactions <em>in vivo</em>. However, we will retain the well-mixed assumption in this work.</p>
+<p>We are typically most interested in integrating $\frac{d[\mathrm{P}]}{dt}$.</p>
+<p>An assumption commonly made at this point is to suppose that the rates of enzyme-substrate association ($\kon$) and dissociation ($\koff$)  are greater than those for the enzyme and product ($\kon$, $\koff$ $\gg$ $\kcat$, $\kuncat$). Under that assumption, and assuming the initial substrate concentration is much larger than the enzyme concentration ($[\mathrm{S_0}] &gt; [\mathrm{E_0}]$), a timescale separation argument called the "Quasi-Steady-State Approximation" (QSSA) permits us to set $\dESdt = 0$. From this approximation, we can derive\footnote{A good Reversible Michaelis-Menten/Briggs-Haldane derivation can be found <a href="http://www.bio-physics.at/wiki/index.php?title=Reversible_Michaelis_Menten_Kinetics">here</a> the traditional Reversible Michaelis-Menten/Briggs-Haldane expression:</p>
+$$\frac{d[\mathrm{P}]}{dt} = 
+\frac{
+\frac{\kcat \, [\mathrm{E_T}] [\mathrm{S}]}{K_{m,\mathrm{S}}} - 
+\frac{\kuncat \, [\mathrm{E_T}] [\mathrm{P}]}{K_{m,\mathrm{P}}}}
+{1+\frac{[\mathrm{S}]}{K_{m,\mathrm{S}}} + \frac{[\mathrm{P}]}{K_{m,\mathrm{P}}}}$$<p>in which we have introduced the "Michaelis Constants": $K_{m,\mathrm{S}} = \frac{\koff + \kcat}{\kon}$ and $K_{m,\mathrm{P}} = \frac{\kcat + \koff}{\kuncat}$. The determination of the 4 constants ($\kcat$, $\kuncat$, $K_{m,\mathrm{S}}$, and $K_{m,\mathrm{P}}$) from experimental data for the enzymatic reactions of life is a major project, and reported values have been tabulated in the BRENDA database.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-\begin{equation}
-E+S \underset{k_{-1}}{\overset{k_1}{\rightleftarrows}} ES \underset{k_{-2}}{\overset{k_2}{\rightleftarrows}}E+P
-\end{equation}
 </div>
 </div>
 </div>
@@ -332,11 +358,14 @@ E+S \underset{k_{-1}}{\overset{k_1}{\rightleftarrows}} ES \underset{k_{-2}}{\ove
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<div class="collapsible">
+            <a class="collapse-button" onclick="this.parentElement.classList.toggle('collapsed');"><i class="fas fa-ellipsis-h"></i></a>
+            <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">k_on</span> <span class="o">=</span> <span class="mi">1</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># define integrate_full</span>
+<span class="n">k_on</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">k_off</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">k_cat</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">k_uncat</span> <span class="o">=</span> <span class="mf">0.1</span>
@@ -375,6 +404,7 @@ E+S \underset{k_{-1}}{\overset{k_1}{\rightleftarrows}} ES \underset{k_{-2}}{\ove
 </div>
 </div>
 
+        </div>
 </div>
     
 
