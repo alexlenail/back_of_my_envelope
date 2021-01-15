@@ -636,7 +636,9 @@ pre, .footer-col-wrapper { padding-left: 60px; }
 
 .output pre { background-color: inherit !important; border: none; border-left: 3px solid lightgray; padding-left: 15px; }
 
-.katex { font-size: 1em !important; }
+.katex { font-size: 1.3rem !important; }
+
+.katex-display .katex { font-size: 1.4rem !important; }
 
 table.dataframe th, table.dataframe td { padding: 3px 10px !important; }
 
