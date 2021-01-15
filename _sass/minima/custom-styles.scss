@@ -80,10 +80,8 @@ pre, .footer-col-wrapper {
     padding-left: 15px;
 }
 
-.katex {
-    font-size: 1em !important;
-}
-
+.katex {                font-size: 1.3rem !important; } // inline
+.katex-display .katex { font-size: 1.4rem !important; } // equations
 
 table.dataframe th, table.dataframe td {
     padding: 3px 10px !important;
