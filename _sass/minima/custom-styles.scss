@@ -62,10 +62,16 @@ article.post, .footer-col-wrapper {
     margin: 0;
 }
 
-pre, .footer-col-wrapper {
+pre {
+    line-height: 1rem;
+    // font-size: 0.7rem !important;
     // border-left: 15px solid lightsteelblue;
     // padding-left: 45px;
+}
+
+pre, .footer-col-wrapper {
     padding-left: 60px;
+
 }
 
 // .code_cell, pre {
@@ -113,6 +119,22 @@ h1.post-title {
     margin-top: 0 !important;
 }
 
+.flash {
+    border: none !important;
+    font-size: 1.2rem !important;
+    background-color: #fffbe7 !important;
+}
+
+.octicon-info {
+    display: none !important;
+}
+
+.post-content p, .post-content li {
+    color: #24292e !important;
+}
+
+
+
 
 /*-----------------------------------*/
 /*----- COLLAPSE --------------------*/
@@ -122,7 +144,7 @@ h1.post-title {
 }
 
 .collapsed {
-    height: 1.9rem;
+    height: 1.6rem;
     overflow-y: hidden;
 }
 
