@@ -312,7 +312,7 @@ $$\newcommand{\kon}{k_{\mathrm{on}}}
 \newcommand{\dSdt}{\frac{d[\mathrm{S}]}{dt}}
 \newcommand{\dEdt}{\frac{d[\mathrm{E}]}{dt}}
 \newcommand{\dESdt}{\frac{d[\mathrm{ES}]}{dt}}
-\newcommand{\dPdt}{\frac{d[\mathrm{P}]}{dt}}$$<h3 id="Enzyme-Kinetics">Enzyme Kinetics<a class="anchor-link" href="#Enzyme-Kinetics"> </a></h3><p>Enzymes catalyze many critical chemical reactions in cells.</p>
+\newcommand{\dPdt}{\frac{d[\mathrm{P}]}{dt}}$$<h3 id="1.1-Enzyme-Kinetics">1.1 Enzyme Kinetics<a class="anchor-link" href="#1.1-Enzyme-Kinetics"> </a></h3><p>Enzymes catalyze many critical chemical reactions in cells.</p>
 <p>Describing a cell with a mathematical model (a long-standing goal of computational biologists) would entail modelling each enzyme-catalyzed chemical reaction.</p>
 <p>However, although we may know the <em>scheme</em> for many enzymatic reactions (the responsible enzyme, the associated substrates, and resultant reaction products) we are often missing many of the details needed to construct a faithful mathematical model of the reaction.</p>
 <p>Let's begin by introducing the mathematical model used to describe enzymatic reaction schemes. Consider the following enzymatically-catalyzed (uni uni) chemical reaction scheme:</p>
@@ -326,21 +326,24 @@ $$\begin{aligned}
     \frac{d[\mathrm{E}]}{dt} &amp;= k_{\mathrm{off}}[\mathrm{ES}] - k_{\mathrm{on}}[\mathrm{E}][\mathrm{S}] + k_{\mathrm{cat}}[\mathrm{ES}] - k_{\mathrm{uncat}}[\mathrm{E}][\mathrm{P}] \\
     \frac{d[\mathrm{ES}]}{dt} &amp;= - k_{\mathrm{off}}[\mathrm{ES}] + k_{\mathrm{on}}[\mathrm{E}][\mathrm{S}] - k_{\mathrm{cat}}[\mathrm{ES}] + k_{\mathrm{uncat}}[\mathrm{E}][\mathrm{P}] \\
     \frac{d[\mathrm{P}]}{dt} &amp;= k_{\mathrm{cat}}[\mathrm{ES}] - k_{\mathrm{uncat}}[\mathrm{E}][\mathrm{P}] 
-\end{aligned}$$<p>This differential equation model describing the (deterministic) chemical kinetics for an enzymatically-catalyzed reaction in well-mixed conditions contains 4 kinetic parameters, i.e. 4 degrees of freedom, which we do not know <em>a priori</em>. These will be the subject of inference.</p>
-<blockquote><p>We note here that the intracellular environment is not best described as well-mixed, and models of '<a href="https://en.wikipedia.org/wiki/Macromolecular_crowding">Macromolecular Crowding</a>' have led to more accurate rate laws for these reactions <em>in vivo</em>. However, we will retain the well-mixed assumption for now.</p>
-<h3 id="Parameter-Inference">Parameter Inference<a class="anchor-link" href="#Parameter-Inference"> </a></h3>
-</blockquote>
-<p>There are 3 typical problems associated with ODE models:</p>
+\end{aligned}$$<p>This differential equation model describing the (deterministic) chemical kinetics for an enzymatically-catalyzed reaction in well-mixed conditions contains 4 kinetic parameters, i.e. 4 degrees of freedom, which we do not know <em>a priori</em>. These will be the subject of inference.
+<div class="flash">
+    <svg class="octicon octicon-info" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>the intracellular environment is not best described as well-mixed, and models of &#8217;<a href="https://en.wikipedia.org/wiki/Macromolecular_crowding">Macromolecular Crowding</a>&#8217; have led to more accurate rate laws for these reactions <em>in vivo</em>. However, we will retain the well-mixed assumption for now.
+</div></p>
+<h3 id="1.2-Parameter-Inference">1.2 Parameter Inference<a class="anchor-link" href="#1.2-Parameter-Inference"> </a></h3><p>There are 3 typical problems associated with ODE models:</p>
 <ul>
 <li>Supplied with a complete specification of the system, the <strong>forward problem</strong> is to integrate the differential equations from some initial conditions forwards in time and predict the trajectory of the system. This is what is typically meant by "solving" the ODE system, but exact analytical solutions are rare, and <a href="https://en.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations">numerical methods</a> are often brought to bear to approximate system trajectories.</li>
 <li>Supplied with one or more trajectories (data) but incomplete specification of the system, the <strong>inverse problem</strong> is to estimate parameters of the system (coefficients in the ODE expressions). </li>
 <li>Finally, given some manipulable inputs, the <strong>control problem</strong> is to drive the system towards some desired state.</li>
 </ul>
-<p>This post will explore a range of approaches for the inverse problem. Our goal will be to estimate the kinetic parameters of enzymatically-catalyzed chemical reactions from timeseries of concentrations of the molecular species.</p>
-<blockquote><p>We note here that enzyme kinetic parameters are typically not inferred from metabolite timeseries data using the methods we will describe, but instead from specific <a href="https://en.wikipedia.org/wiki/Enzyme_assay">enzyme assays</a>. However, at the moment, these assays are limited to studying one enzyme at a time. The inference approaches described in this post can leverage data from emerging high-throughput assays. 
-The determination of the kinetic parameters for the enzymatic reactions of life is a major project, and reported values have been tabulated in databases such as <a href="https://www.brenda-enzymes.org/">BRENDA</a>. However, my experience with these databases has been that the reported kinetic parameters appear to be severely unreliable.</p>
-</blockquote>
-<h3 id="The-Michaelis-Menten/Briggs-Haldane-Approximation">The Michaelis-Menten/Briggs-Haldane Approximation<a class="anchor-link" href="#The-Michaelis-Menten/Briggs-Haldane-Approximation"> </a></h3><p>Two assumptions commonly made at this point are:</p>
+<p>This post will explore a range of approaches for the inverse problem. Our goal will be to estimate the kinetic parameters of enzymatically-catalyzed chemical reactions from timeseries of concentrations of the molecular species. 
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>enzyme kinetic parameters are typically not inferred from metabolite timeseries data using the methods we will describe, but instead from specific <a href="https://en.wikipedia.org/wiki/Enzyme_assay">enzyme assays</a>. However, at the moment, these assays are limited to studying one enzyme at a time. The inference approaches described in this post can leverage data from emerging high-throughput assays. 
+</div></p>
+<p>The determination of the kinetic parameters for the enzymatic reactions of life is a major project, and reported values have been tabulated in databases such as <a href="https://www.brenda-enzymes.org/">BRENDA</a>. However, my experience with these databases has been that the reported kinetic parameters appear to be severely unreliable.</p>
+<h3 id="1.3-The-Michaelis-Menten/Briggs-Haldane-Approximation">1.3 The Michaelis-Menten/Briggs-Haldane Approximation<a class="anchor-link" href="#1.3-The-Michaelis-Menten/Briggs-Haldane-Approximation"> </a></h3><p>Two assumptions commonly made at this point are:</p>
 <ul>
 <li>to suppose that the rates of enzyme-substrate association ($\kon$) and dissociation ($\koff$) are greater than the rates for enzyme and product ($\kon$, $\koff$ $\gg$ $\kcat$, $\kuncat$).</li>
 <li>to assume the initial substrate concentration is much larger than the enzyme concentration ($[\mathrm{S_0}] &gt; [\mathrm{E_0}]$). 
@@ -354,9 +357,11 @@ $$\begin{aligned}
 {1+\frac{[\mathrm{S}]}{K_{m,\mathrm{S}}} + \frac{[\mathrm{P}]}{K_{m,\mathrm{P}}}} \\ \\
 \frac{d[\mathrm{S}]}{dt} &amp;= -\frac{d[\mathrm{P}]}{dt}
 \end{aligned}$$<p>in which we have introduced the "Michaelis Constants": $K_{m,\mathrm{S}} = \frac{\koff + \kcat}{\kon}$ and $K_{m,\mathrm{P}} = \frac{\kcat + \koff}{\kuncat}$.</p>
-<p>The QSSA reduces the system from 4 variables to 2. There are still 4 kinetic parameters to estimate in this reduced model.</p>
-<blockquote><p>We note here that <em>another</em> assumption typically made at this point is to assume that catalysis is irreversible, leading to a further simplified expression for the rate of product formation $\frac{d[\mathrm{P}]}{dt}$. However, this assumption is quite often inaccurate, so we will not make it.</p>
-</blockquote>
+<p>The QSSA reduces the system from 4 variables to 2. There are still 4 kinetic parameters to estimate in this reduced model. 
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong><em>another</em> assumption typically made at this point is to assume that catalysis is irreversible, leading to a further simplified expression for the rate of product formation $\frac{d[\mathrm{P}]}{dt}$. However, this assumption is quite often inaccurate, so we will not make it. 
+</div></p>
 
 </div>
 </div>
