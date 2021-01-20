@@ -133,8 +133,13 @@ h1.post-title {
     color: #24292e !important;
 }
 
+.collapsed + .output_wrapper  {
+    margin-top: 1.5rem !important;
+}
 
-
+code {
+    padding: 0 !important;
+}
 
 /*-----------------------------------*/
 /*----- COLLAPSE --------------------*/
