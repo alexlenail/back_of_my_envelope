@@ -658,6 +658,10 @@ h1.post-title { font-size: 3rem !important; margin: 0 !important; }
 
 .post-content p, .post-content li { color: #24292e !important; }
 
+.collapsed + .output_wrapper { margin-top: 1.5rem !important; }
+
+code { padding: 0 !important; }
+
 /*-----------------------------------*/
 /*----- COLLAPSE --------------------*/
 .collapsible { position: relative; }
