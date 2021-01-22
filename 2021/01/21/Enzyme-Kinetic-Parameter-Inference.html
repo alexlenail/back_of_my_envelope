@@ -10,13 +10,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Supposing you observe a timeseries of concentrations of metabolites, can you infer the kinetic parameters for the enzyme?" />
 <meta property="og:description" content="Supposing you observe a timeseries of concentrations of metabolites, can you infer the kinetic parameters for the enzyme?" />
-<link rel="canonical" href="https://alexlenail.me/back_of_my_envelope/2021/01/20/Enzyme-Kinetic-Parameter-Inference.html" />
-<meta property="og:url" content="https://alexlenail.me/back_of_my_envelope/2021/01/20/Enzyme-Kinetic-Parameter-Inference.html" />
+<link rel="canonical" href="https://alexlenail.me/back_of_my_envelope/2021/01/21/Enzyme-Kinetic-Parameter-Inference.html" />
+<meta property="og:url" content="https://alexlenail.me/back_of_my_envelope/2021/01/21/Enzyme-Kinetic-Parameter-Inference.html" />
 <meta property="og:site_name" content="Back of my Envelope" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-01-20T00:00:00-06:00" />
+<meta property="article:published_time" content="2021-01-21T00:00:00-06:00" />
 <script type="application/ld+json">
-{"url":"https://alexlenail.me/back_of_my_envelope/2021/01/20/Enzyme-Kinetic-Parameter-Inference.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://alexlenail.me/back_of_my_envelope/2021/01/20/Enzyme-Kinetic-Parameter-Inference.html"},"headline":"Enzyme Kinetic Parameter Inference","dateModified":"2021-01-20T00:00:00-06:00","datePublished":"2021-01-20T00:00:00-06:00","description":"Supposing you observe a timeseries of concentrations of metabolites, can you infer the kinetic parameters for the enzyme?","@context":"https://schema.org"}</script>
+{"url":"https://alexlenail.me/back_of_my_envelope/2021/01/21/Enzyme-Kinetic-Parameter-Inference.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://alexlenail.me/back_of_my_envelope/2021/01/21/Enzyme-Kinetic-Parameter-Inference.html"},"headline":"Enzyme Kinetic Parameter Inference","dateModified":"2021-01-21T00:00:00-06:00","datePublished":"2021-01-21T00:00:00-06:00","description":"Supposing you observe a timeseries of concentrations of metabolites, can you infer the kinetic parameters for the enzyme?","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/back_of_my_envelope/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://alexlenail.me/back_of_my_envelope/feed.xml" title="Back of my Envelope" />
 
@@ -112,13 +112,13 @@ window.onload = wrap_img;
 </div>
       </div>
     <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Enzyme Kinetic Parameter Inference</h1><p class="page-description">Supposing you observe a timeseries of concentrations of metabolites, can you infer the kinetic parameters for the enzyme?</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-01-20T00:00:00-06:00" itemprop="datePublished">
-        Jan 20, 2021
+    <h1 class="post-title p-name" itemprop="name headline">Enzyme Kinetic Parameter Inference</h1><p class="page-description">Supposing you observe a timeseries of concentrations of metabolites, can you infer the kinetic parameters for the enzyme?</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-01-21T00:00:00-06:00" itemprop="datePublished">
+        Jan 21, 2021
       </time>
        • <span class="read-time" title="Estimated read time">
     
     
-      17 min read
+      19 min read
     
 </span></p>
 
@@ -664,7 +664,7 @@ $$\begin{aligned}
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can plainly see the validity of the Quasi-Steady-State Approximation (QSSA) in action in the trajectory: <span style="color:#a0522d">Enzyme E</span> and <span style="color:#1e90ff">Substrate S</span> rapidly form <span style="color:#0000ff">Enzyme-Substrate complex ES</span>, the concentration of which remains relatively constant throughout the course of the reaction (recall the QSSA is the approximation that $\dESdt = 0$). Thus, the Michaelis-Menten/Briggs-Haldane product concentration trajectory <span style="color:#6a5acd"><b>P_MM</b></span> well approximates the full kinetics trajectory for the concentration of <span style="color:#00008b">product <b>P</b></span>, since the requisite assumptions are valid, namely, (1) $[\mathrm{S_0}] \gg [\mathrm{E_0}]$ and (2) $\kon$, $\koff$ $\gg$ $\kcat$, $\kuncat$.</p>
+<p>We can plainly see the validity of the Quasi-Steady-State Approximation (QSSA) in action in the trajectory: <span style="color:#a0522d">Enzyme <b>E</b></span> and <span style="color:#1e90ff">Substrate <b>S</b></span> rapidly form <span style="color:#0000ff">Enzyme-Substrate complex <b>ES</b></span>, the concentration of which remains relatively constant throughout the course of the reaction (recall the QSSA is the approximation that $\dESdt = 0$). Thus, the Michaelis-Menten/Briggs-Haldane product concentration trajectory <span style="color:#6a5acd"><b>P_MM</b></span> well approximates the full kinetics trajectory for the concentration of <span style="color:#00008b">product <b>P</b></span>, since the requisite assumptions are valid, namely, (1) $[\mathrm{S_0}] \gg [\mathrm{E_0}]$ and (2) $\kon$, $\koff$ $\gg$ $\kcat$, $\kuncat$.</p>
 <p>In practice, Michaelis-Menten/Briggs-Haldane kinetics are often assumed by default, risking the possibility of their misapplication. Let's take this opportunity to explore how the MM/BH kinetics diverge from the full kinetics when we violate the requisite assumptions.</p>
 
 </div>
@@ -857,7 +857,7 @@ $$\begin{aligned}
 <li>The size of the error is large</li>
 <li>It's slow, due to the uniform size of the timesteps.</li>
 </ul>
-<p>A popular alternative which reconciles these drawbacks is the 4th order <a href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods">Runge Kutta Method</a> (abbreviated RK4) which is the default integration method of scipy's <code>integrate</code> package.</p>
+<p>A popular alternative which reconciles these drawbacks is the 4th order <a href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods">Runge Kutta Method</a> (abbreviated RK4) which is the default integration method of scipy's <code><a href="https://docs.scipy.org/doc/scipy/reference/integrate.html">integrate</a></code> package.</p>
 <p>Due to it's superior speed and accuracy, we'll use this method during inference. As a sanity check, we compare our Euler Method code to scipy's RK4:</p>
 
 </div>
@@ -1077,7 +1077,8 @@ $$\begin{aligned}
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We've seen how different kinetic parameters result it different trajectories of the chemical system. We're interested in  the trajectory of a chemical system, and want to know the associated kinetic parameters.</p>
+<p>We have seen how the trajectory of the chemical system is a function of the kinetic parameters. We would now like to invert that function to recover the kinetic parameters from an observed trajectory.</p>
+<p>Suppose we know the initial concentrations of <span style="color:#a0522d">Enzyme <b>E</b></span> and <span style="color:#1e90ff">Substrate <b>S</b></span>, and we measure the concentration of <span style="color:#00008b">product <b>P</b></span> over the course of the reaction, which yields the following plot:</p>
 
 </div>
 </div>
@@ -1127,7 +1128,39 @@ $$\begin{aligned}
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>One way to think about this is that there are two spaces: a parameter space and a trajectory space, and we want the inverse map from the trajectory space to the parameter space, at least well enough to determine what regions of the parameter space produce trajectories like the one we observe.</p>
+<p>We assume throughout this post that our measurements are noiseless. Unlike some of our other assumptions, this one won't make a significant difference. 
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>If we had measured $\dPdt$ for various (linearly independent) concentrations of $[\mathrm{S}]$, $[\mathrm{P}]$, and $[\mathrm{E}]_0$ (as in an <em>in vitro</em> enzyme assay) we could use a nonlinear regression with the Michaelis-Menten/Briggs-Haldane expression for $\dPdt$. Concretely, supposing we had a set of measurements for the variables in &lt;span style=&#8217;color:blue&#8217;&gt;blue&lt;/span&gt;, a nonlinear regression would permit us to fit the constants in &lt;span style=&#8217;color:red&#8217;&gt;red&lt;/span&gt;:
+</div>&gt; &gt; $$\color{blue}{\dPdt} = 
+\frac{
+\frac{\color{red}{\kcat} \, 
+\color{blue}{[\mathrm{E_T}]}
+\color{blue}{[\mathrm{S}]}}
+{\color{red}{K_{m,\mathrm{S}}}} - 
+\frac{\color{red}{\koff} \, \color{blue}{[\mathrm{E_T}]} \color{blue}{[\mathrm{P}]}}{\color{red}{K_{m,\mathrm{P}}}}}
+{1+\frac{\color{blue}{[\mathrm{S}]}}{\color{red}{K_{m,\mathrm{S}}}} + \frac{\color{blue}{[\mathrm{P}]}}{\color{red}{K_{m,\mathrm{P}}}}} 
+$$
+&gt;</p>
+<blockquote><p>If we had assumed the reaction were irreversible, the Michaelis-Menten/Briggs-Haldane expression would have simplified to</p>
+$$\color{blue}{\dPdt} = 
+\frac{
+\color{red}{\kcat} \, \color{blue}{[\mathrm{E_T}]} \color{blue}{[\mathrm{S}]}}
+{\color{red}{K_{m,\mathrm{S}}} + \color{blue}{[\mathrm{S}]}}
+$$<p>Where $\color{red}{\kcat} \, \color{blue}{[\mathrm{E_T}]}$ is often consolidated as $\color{red}{V_{max}}$</p>
+<p>To recap:we take a different approach because:&gt; 1. Simultaneous measurements of the activity many enzymes in cells might offer estimates of $\mathrm{S}$, $\mathrm{P}$, and perhaps $\mathrm{E}$ but not $\dPdt$. We would also presumably not be able to approximate $\dPdt$ via finite differences, due to the relative sparsity of the measurement in contrast to the rates of the reactions.</p>
+<ol>
+<li>This approach would produce spurious estimates of the kinetic parameters in cases in which the Quasi-Steady-State Approximation is invalid (see <a href="#2.2:-Breaking-the-Michaelis-Menten/Briggs-Haldane-Assumptions:--%C2%A0-%C2%A0-%C2%A0-Initial-Substrate:Enzyme-Ratio">§2.2</a>, <a href="#2.3:-Breaking-the-Michaelis-Menten/Briggs-Haldane-Assumptions:--%C2%A0-%C2%A0-%C2%A0-Fast-Enzyme-Substrate-Complex-Kinetics">§2.3</a>)&gt;
+At the moment, I believe there are no methods for the inverse problem which are not variants of the two I will describe, and importantly, no methods which do not iterate a loop of solving the forward problem at each iteration.</li>
+</ol>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are two families of approaches to solving this inverse problem. We will explore the simplest variants from each family.</p>
 
 </div>
 </div>
@@ -1135,8 +1168,8 @@ $$\begin{aligned}
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="3.1-Bayesian-Approach:-Inference-by-Sampling">3.1 Bayesian Approach: Inference by Sampling<a class="anchor-link" href="#3.1-Bayesian-Approach:-Inference-by-Sampling"> </a></h3><p><div class="flash">
-    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>We assume the reader is familiar with Bayesian Inference in more conventional settings
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>We assume the reader is familiar with Bayesian Inference in other settings.
 </div></p>
 
 </div>
@@ -1144,9 +1177,12 @@ $$\begin{aligned}
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A Bayesian formulation of this inverse problem hinges on defining a likelihood. We define the likelihood as a gaussian of fixed variance around each observation. Together, they are a multivariate gaussian with no covariances (diagonal covariance matrix).</p>
-<p>We will run MCMC through parameter space, integrating samples</p>
-<p>The algorithm is as follows:</p>
+<p>The goal of the Bayesian approach will be to determine a posterior over the 4D space of the kinetic parameters. The posterior is (up to a constant factor) the product of the prior and likelihood. Thus the Bayesian Inference approach requires us to define a prior and a likelihood.</p>
+<ul>
+<li>The empirical distribution of kinetic parameters for enzymes tabulated in biochemistry databases makes a good <strong>prior</strong>. The distribution is reasonably well-approximated as log-normal. </li>
+<li>We choose our <strong>likelihood</strong> to be a gaussian of fixed variance around the observations, and no covariances (i.e. a Gaussian with a diagonal covariance matrix). </li>
+</ul>
+<p>Those two distributions permit us to elaborate an Markov Chain Monte Carlo (MCMC) routine to sample from the posterior. The algorithm is as follows:</p>
 <ol>
 <li>Draw kinetic parameters from the proposal distribution. </li>
 <li>Integrate the system with the proposed kinetic parameters</li>
@@ -1162,8 +1198,7 @@ $$\begin{aligned}
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Need to spend some time defining decent priors</strong></p>
-
+<h4 id="3.1.1.-Priors">3.1.1. Priors<a class="anchor-link" href="#3.1.1.-Priors"> </a></h4>
 </div>
 </div>
 </div>
@@ -1192,8 +1227,20 @@ scipy.stats.lognorm<span class="o">?</span>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="3.1.2.-Likelihood">3.1.2. Likelihood<a class="anchor-link" href="#3.1.2.-Likelihood"> </a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Now let's use MCMC to get a posterior over $\kcat$, $\kuncat$, $K_{m,\mathrm{S}}$, and $K_{m,\mathrm{P}}$ (from which we can derive $\kon \,$ and $\koff$ ) using the Michaelis Menten Kinetics expression for $\dPdt$. The likelihood is a gaussian around the observed concentration of P, sampled densely in time.</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="3.1.3.-Metropolis-Hastings">3.1.3. Metropolis-Hastings<a class="anchor-link" href="#3.1.3.-Metropolis-Hastings"> </a></h4>
 </div>
 </div>
 </div>
@@ -1671,7 +1718,7 @@ pentose phosphate pathway</a></p>
 
 
 
-  </div><a class="u-url" href="/back_of_my_envelope/2021/01/20/Enzyme-Kinetic-Parameter-Inference.html" hidden></a>
+  </div><a class="u-url" href="/back_of_my_envelope/2021/01/21/Enzyme-Kinetic-Parameter-Inference.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
