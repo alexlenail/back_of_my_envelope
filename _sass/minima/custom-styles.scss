@@ -59,7 +59,7 @@ article.post, .footer-col-wrapper {
     margin-left: 60px;
 }
 
-.output_png img :not(.keep_dims) {
+.output_png img:not(.keep_dims) {
     width: auto !important;
     height: auto !important;
     max-width: 800px;
