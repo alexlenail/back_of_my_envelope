@@ -15,3 +15,5 @@ __pycache__
 .DS_Store
 data/Enzyme_Kinetic_Parameter_Inference/log_optimization_runs.pickle
 data/Enzyme_Kinetic_Parameter_Inference/optimization_runs.pickle
+
+
