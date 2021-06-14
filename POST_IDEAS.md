@@ -20,3 +20,11 @@ integration vs solving an ODE numerically
 identifiability analysis (practical, theoretical,...)
 
 Fitting SDEs to data
+
+
+how do you evaluate mutual information between two continuous sets, with relatively sparse observations?
+
+"The name of the wind": PDE visualizations, and how you can describe these phenomena
+
+
+
