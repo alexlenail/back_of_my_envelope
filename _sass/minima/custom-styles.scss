@@ -31,12 +31,12 @@ h3 { font-size: 1.85rem !important; }
 h4 { font-size: 1.7rem !important; }
 
 
-article.post, .footer-col-wrapper {
+.post, .footer-col-wrapper {
     max-width: 100vw !important;
     width: 100vw;
     padding: 0;
     margin: 0;
-    margin-left: calc(-1 * ((100vw - 100%) / 2));
+    // margin-left: calc(-1 * ((100vw - 100%) / 2));
 }
 
 .rendered_html p {
@@ -174,3 +174,69 @@ code {
 .collapse-button > i { color: #b7b7b7; }
 .collapse-button > i:hover { color:#1f1f1f; }
 
+
+/*-----------------------------------*/
+/*----- TOC --------------------*/
+
+.sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
+
+.Layout-sidebar {
+    background-color: #f8f9fb;
+    border-right: 1px solid #eeebee;
+}
+
+.Layout {
+    --Layout-gutter: 0 !important;
+}
+
+ol {
+  list-style-type: none;
+  counter-reset: item;
+  margin: 0;
+  padding: 0;
+}
+
+ol > li {
+  display: table;
+  counter-increment: item;
+  margin-bottom: 0.6em;
+}
+
+ol > li:before {
+  content: counters(item, ".") ". ";
+  display: table-cell;
+  padding-right: 0.6em;
+  vertical-align:top;
+  width: 1px;
+}
+
+li ol > li {
+  margin: 0;
+}
+
+li ol > li:before {
+  content: counters(item, ".") " ";
+  padding-left: 4px;
+  vertical-align:top;
+  width: 1px;
+}
+
+.toc-entry > a {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    padding: 1px 4px 1px;
+
+}
+.toc-entry {
+    width: 100%;
+}
+
+.toc-entry > a:hover {
+    background: linear-gradient(90deg, transparent, #efeff4, 1rem, #efeff4);
+    text-decoration: none;
+}
