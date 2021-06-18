@@ -26,5 +26,5 @@ how do you evaluate mutual information between two continuous sets, with relativ
 
 "The name of the wind": PDE visualizations, and how you can describe these phenomena
 
-
+How do you make a spline that fits some points? You have constraints on the derivatives. Do you just solve a linear system?
 
