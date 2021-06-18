@@ -1,7 +1,13 @@
 ---
-layout: default
+layout: default2
 ---
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+<div class="Layout">
+    {% if page.toc %}
+      <div class="Layout-sidebar border" id="toc">
+        {% toc %}
+      </div>
+    {% endif -%}
+<article class="Layout-main post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   {% if page.layout == 'notebook' %}
     {% if page.badges or page.badges == nil %}
       <div class="pb-5 d-flex flex-wrap flex-justify-end">
@@ -55,7 +61,7 @@ layout: default
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    {{ content | toc  }}
+    {{ content }}
   </div>
   {%- if page.comments -%}
     {%- include utterances.html -%}
@@ -65,3 +71,4 @@ layout: default
   {%- endif -%}
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
+</div>
