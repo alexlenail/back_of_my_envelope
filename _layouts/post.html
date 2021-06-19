@@ -4,7 +4,8 @@ layout: default2
 <div class="Layout">
     {% if page.toc %}
       <div class="Layout-sidebar">
-        <div id="toc" class="pt-2 pl-2 sticky">
+        <div id="toc" class="pt-3 pl-3 sticky">
+          <strong>{{ page.title | escape }}</strong>
           {% toc %}
         </div>
       </div>
