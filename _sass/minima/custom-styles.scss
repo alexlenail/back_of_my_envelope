@@ -203,13 +203,13 @@ ol {
 ol > li {
   display: table;
   counter-increment: item;
-  margin-bottom: 0.6em;
 }
 
 ol > li:before {
   content: counters(item, ".") ". ";
   display: table-cell;
-  padding-right: 0.6em;
+  padding-right: 0.4em;
+  padding-top: 5px;
   vertical-align:top;
   width: 1px;
 }
@@ -221,6 +221,7 @@ li ol > li {
 li ol > li:before {
   content: counters(item, ".") " ";
   padding-left: 4px;
+  padding-top: 5px;
   vertical-align:top;
   width: 1px;
 }
@@ -229,14 +230,32 @@ li ol > li:before {
     display: inline-block;
     height: 100%;
     width: 100%;
-    padding: 1px 4px 1px;
+    padding: 5px 5px 5px 0px;
 
 }
 .toc-entry {
     width: 100%;
 }
 
-.toc-entry > a:hover {
+.toc-entry > a:hover, .toc-entry > a.active {
     background: linear-gradient(90deg, transparent, #efeff4, 1rem, #efeff4);
     text-decoration: none;
+    transition: all 50ms ease-in-out;
 }
+
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+article h2, article h3, article h4, article h5, article h6 {
+    display: table;
+}
+article h2:before, article h3:before, article h4:before, article h5:before, article h6:before {
+    content: attr(data-before);
+    display: table-cell;
+    padding-right: 0.6rem;
+}
+
+
+
