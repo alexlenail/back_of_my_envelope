@@ -21,12 +21,35 @@
 <link rel="stylesheet" href="/back_of_my_envelope/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://alexlenail.me/back_of_my_envelope/feed.xml" title="Back of my Envelope" />
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://unpkg.com/@primer/css@17.3.0/dist/primer.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+
+    var i = 0, j = 0, k = 0;
+
+    document.querySelectorAll('h2, h3, h4').forEach((heading) => {
+
+        if (heading.localName == 'h2') {
+            i++; j = 0; k = 0;
+            heading.setAttribute('data-before', `${i}. `)
+        }
+        if (heading.localName == 'h3') {
+            j++; k = 0;
+            heading.setAttribute('data-before', `${i}.${j}. `)
+        }
+        if (heading.localName == 'h4') {
+            k++;
+            heading.setAttribute('data-before', `${i}.${j}.${k}. `)
+        }
+    });
+});
+</script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         renderMathInElement( document.body, {
@@ -70,8 +93,13 @@ window.onload = wrap_img;
     elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
     });
 </script>
+
 </head>
-<body><header class="site-header">
+<body>
+
+    <main class="page-content" aria-label="Content" style="padding-top: 0;">
+        <div class="Layout">
+    <div class="Layout-main"><header class="site-header">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/back_of_my_envelope/">Back of my Envelope</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -86,49 +114,47 @@ window.onload = wrap_img;
         <div class="trigger"><a class="page-link" href="/back_of_my_envelope/about/">About</a><a class="page-link" href="/back_of_my_envelope/old/">Old Blog</a></div>
       </nav></div>
 </header>
-<main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  
-    
-      <div class="pb-5 d-flex flex-wrap flex-justify-end">
-        <div class="px-2">
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+      
+        
+          <div class="pb-5 d-flex flex-wrap flex-justify-start" style="padding-left: 52px">
+            <div class="px-2">
 
     <a href="https://github.com/alexlenail/back_of_my_envelope/tree/master/_notebooks/2020-12-04-orthogonal-functions.ipynb" role="button" target="_blank">
 <img class="notebook-badge-image" src="/back_of_my_envelope/assets/badges/github.svg" alt="View On GitHub">
     </a>
 </div>
 
-        <div class="px-2">
+            <div class="px-2">
     <a href="https://mybinder.org/v2/gh/alexlenail/back_of_my_envelope/master?filepath=_notebooks%2F2020-12-04-orthogonal-functions.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/back_of_my_envelope/assets/badges/binder.svg" alt="Open In Binder"/>
     </a>
 </div>
 
-        <div class="px-2">
+            <div class="px-2">
     <a href="https://colab.research.google.com/github/alexlenail/back_of_my_envelope/blob/master/_notebooks/2020-12-04-orthogonal-functions.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/back_of_my_envelope/assets/badges/colab.svg" alt="Open In Colab"/>
     </a>
 </div>
-      </div>
-    <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Orthogonal Functions</h1><p class="page-description">What does it mean for functions to be orthogonal?</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-12-04T00:00:00-06:00" itemprop="datePublished">
-        Dec 4, 2020
-      </time>
-       • <span class="read-time" title="Estimated read time">
+          </div>
+        <header class="post-header">
+        <h1 class="post-title p-name" itemprop="name headline">Orthogonal Functions</h1><p class="page-description">What does it mean for functions to be orthogonal?</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-12-04T00:00:00-06:00" itemprop="datePublished">
+            Dec 4, 2020
+          </time>
+           • <span class="read-time" title="Estimated read time">
     
     
       1 min read
     
 </span></p>
 
-    
+        
 
 
-  </header>
+      </header>
 
-  <div class="post-content e-content" itemprop="articleBody">
-    <!--
+      <div class="post-content e-content" itemprop="articleBody">
+        <!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
@@ -332,10 +358,8 @@ window.onload = wrap_img;
 
 
 
-  </div><a class="u-url" href="/back_of_my_envelope/2020/12/04/orthogonal-functions.html" hidden></a>
-</article>
-      </div>
-    </main><footer class="site-footer h-card">
+      </div><a class="u-url" href="/back_of_my_envelope/2020/12/04/orthogonal-functions.html" hidden></a>
+    </article><footer class="site-footer h-card">
   <data class="u-url" href="/back_of_my_envelope/"></data>
 
   <div class="wrapper">
@@ -361,6 +385,13 @@ window.onload = wrap_img;
   </div>
 
 </footer>
-</body>
+</div>
+
+
+</div>
+
+    </main>
+
+  </body>
 
 </html>

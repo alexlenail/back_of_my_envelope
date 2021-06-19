@@ -624,7 +624,9 @@ h3 { font-size: 1.85rem !important; }
 
 h4 { font-size: 1.7rem !important; }
 
-article.post, .footer-col-wrapper { max-width: 100vw !important; width: 100vw; padding: 0; margin: 0; margin-left: calc(-1 * ((100vw - 100%) / 2)); }
+body { max-width: 100%; overflow-x: hidden; }
+
+.post, .footer-col-wrapper { max-width: 100vw !important; width: 100vw; padding: 0; margin: 0; }
 
 .rendered_html p { font-size: 1.4rem !important; color: #191919 !important; }
 
@@ -681,5 +683,35 @@ code { padding: 0 !important; }
 .collapse-button > i { color: #b7b7b7; }
 
 .collapse-button > i:hover { color: #1f1f1f; }
+
+/*-----------------------------------*/
+/*----- TOC --------------------*/
+.sticky { position: -webkit-sticky; /* Safari */ position: sticky; top: 0; }
+
+.Layout-sidebar { background-color: #f8f9fb; border-right: 1px solid #eeebee; }
+
+.Layout { --Layout-gutter: 0 !important; }
+
+#toc ol { list-style-type: none; counter-reset: item; margin: 0; padding: 0; }
+
+#toc ol > li { display: table; counter-increment: item; }
+
+#toc ol > li:before { content: counters(item, ".") ". "; display: table-cell; padding-right: 0.4em; padding-top: 5px; vertical-align: top; width: 1px; color: #0366d6; }
+
+#toc li ol > li { margin: 0; }
+
+#toc li ol > li:before { content: counters(item, ".") " "; padding-top: 5px; vertical-align: top; width: 1px; color: #0366d6; }
+
+.toc-entry { width: 100%; }
+
+.toc-entry > a { display: inline-block; height: 100%; width: 100%; padding: 5px 5px 5px 0px; }
+
+.toc-entry > a:visited, .toc-entry > a:hover, .toc-entry > a:active, .toc-entry > a:focus { color: #0366d6; }
+
+.toc-entry > a:hover, .toc-entry > a.active { background: linear-gradient(90deg, transparent, #efeff4, 3rem, #efeff4); text-decoration: none; transition: all 100ms ease-in-out; }
+
+article h2, article h3, article h4, article h5, article h6 { display: table; }
+
+article h2:before, article h3:before, article h4:before, article h5:before, article h6:before { content: attr(data-before); display: table-cell; padding-right: 0.6rem; }
 
 /*# sourceMappingURL=style.css.map */
