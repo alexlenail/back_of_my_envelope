@@ -51,6 +51,6 @@ do I want to try to do parameter inference for the Michaelis Menten parameters?
 
 
 
-
+all the dt's should be mathrm'd
 
 
