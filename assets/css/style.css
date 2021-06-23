@@ -636,7 +636,7 @@ body { max-width: 100%; overflow-x: hidden; }
 
 .site-header .wrapper { text-align: center !important; }
 
-.text_cell_render, .output, .post-header { max-width: 940px !important; margin-left: 60px; }
+.text_cell_render, .output, .post-header { max-width: 940px; margin-left: 60px; }
 
 .output_png img:not(.keep_dims) { width: auto !important; height: auto !important; max-width: 800px; margin: 0; }
 
@@ -660,7 +660,9 @@ h1.post-title { font-size: 3rem !important; margin: 0 !important; }
 
 .post-meta-title { margin-top: 0 !important; }
 
-.flash { border: none !important; font-size: 1.2rem !important; background-color: #fffbe7 !important; }
+.flash { border: none !important; font-size: 1.2rem !important; }
+
+.derivation { border-left: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black; padding-left: 1.4rem; }
 
 .octicon-info { display: none !important; }
 
@@ -669,6 +671,8 @@ h1.post-title { font-size: 3rem !important; margin: 0 !important; }
 .collapsed + .output_wrapper { margin-top: 1.5rem !important; }
 
 code { padding: 0 !important; }
+
+.derivation .katex-display > .katex { text-align: left; margin-left: 4rem; }
 
 /*-----------------------------------*/
 /*----- COLLAPSE --------------------*/
@@ -706,13 +710,13 @@ code { padding: 0 !important; }
 
 .toc-entry > a { display: inline-block; height: 100%; width: 100%; padding: 5px 5px 5px 0px; }
 
-.toc-entry > a:visited, .toc-entry > a:hover, .toc-entry > a:active, .toc-entry > a:focus { color: #0366d6; }
+#toc > a:visited, #toc a:hover, #toc a:active, #toc a:focus { color: #0366d6; }
 
 .toc-entry > a:hover, .toc-entry > a.active { background: linear-gradient(90deg, transparent, #efeff4, 3rem, #efeff4); text-decoration: none; transition: all 100ms ease-in-out; }
 
-article h2, article h3, article h4, article h5, article h6 { display: table; }
+article h2, article h3, article h4 { display: table; }
 
-article h2:before, article h3:before, article h4:before, article h5:before, article h6:before { content: attr(data-before); display: table-cell; padding-right: 0.6rem; }
+article h2:before, article h3:before, article h4:before { content: attr(data-before); display: table-cell; padding-right: 0.6rem; }
 
 .utterances { margin-left: 60px !important; }
 
