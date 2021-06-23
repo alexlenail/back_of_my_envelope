@@ -59,7 +59,7 @@ body {
 }
 
 .text_cell_render, .output, .post-header {
-    max-width: 940px !important;
+    max-width: 940px;
     margin-left: 60px;
 }
 
@@ -130,7 +130,14 @@ h1.post-title {
 .flash {
     border: none !important;
     font-size: 1.2rem !important;
-    background-color: #fffbe7 !important;
+    // background-color: #fffbe7 !important;
+}
+
+.derivation {
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding-left: 1.4rem;
 }
 
 .octicon-info {
@@ -147,6 +154,11 @@ h1.post-title {
 
 code {
     padding: 0 !important;
+}
+
+.derivation .katex-display > .katex {
+    text-align: left;
+    margin-left: 4rem;
 }
 
 /*-----------------------------------*/
@@ -241,7 +253,8 @@ code {
     padding: 5px 5px 5px 0px;
 
 }
-.toc-entry > a:visited, .toc-entry > a:hover, .toc-entry > a:active, .toc-entry > a:focus {
+
+#toc > a:visited, #toc a:hover, #toc a:active, #toc a:focus {
     color: #0366d6;
 }
 
@@ -252,10 +265,12 @@ code {
 }
 
 
-article h2, article h3, article h4, article h5, article h6 {
+article h2, article h3, article h4//, article h5, article h6
+{
     display: table;
 }
-article h2:before, article h3:before, article h4:before, article h5:before, article h6:before {
+article h2:before, article h3:before, article h4:before//, article h5:before, article h6:before
+{
     content: attr(data-before);
     display: table-cell;
     padding-right: 0.6rem;
