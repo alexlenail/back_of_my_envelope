@@ -111,8 +111,8 @@ window.onload = wrap_img;
 <ol>
 <li class="toc-entry toc-h3"><a href="#Single-TF">Single TF </a></li>
 <li class="toc-entry toc-h3"><a href="#Direct-Cooperativity">Direct Cooperativity </a></li>
+<li class="toc-entry toc-h3"><a href="#Competitive-binding">Competitive binding </a></li>
 <li class="toc-entry toc-h3"><a href="#Indirect-cooperativity">Indirect cooperativity </a></li>
-<li class="toc-entry toc-h3"><a href="#Competitive-TF-binding">Competitive TF binding </a></li>
 <li class="toc-entry toc-h3"><a href="#Putting-it-all-together">Putting it all together </a></li>
 </ol>
 </li>
@@ -165,7 +165,7 @@ window.onload = wrap_img;
            • <span class="read-time" title="Estimated read time">
     
     
-      5 min read
+      8 min read
     
 </span></p>
 
@@ -187,11 +187,14 @@ window.onload = wrap_img;
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<div class="collapsible collapsed">
+            <a class="collapse-button" onclick="this.parentElement.classList.toggle('collapsed');"><i class="fas fa-ellipsis-h"></i></a>
+            <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
@@ -216,6 +219,7 @@ window.onload = wrap_img;
 </div>
 </div>
 
+        </div>
 </div>
     
 
@@ -228,7 +232,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>At the moment, there does not exist an assay which reports directly on the occupancies of transcription factor binding sites across the genome in single cells. However, we can measure chromatin accessibility in single cells via <a href="https://www.10xgenomics.com/products/single-cell-atac">single-cell ATAC-seq</a>, which reports a 1-dimensional projection of TFBS occupancies. This blog post explores an approach to lift single cell ATAC signals onto the space of TFBS occupancies, i.e. to deconvolve ATAC signals into TF binding tracks.</p>
-<p>Our approach relies on an orthogonal suite of experiments characterizing transcription factor binding in vitro. In <a href="https://genome.cshlp.org/content/20/6/861.long">High-Throughput SELEX</a> experiments, the</p>
+<p>Our approach relies on an orthogonal suite of experiments characterizing transcription factor binding in vitro. In <a href="https://genome.cshlp.org/content/20/6/861.long">High-Throughput SELEX</a> experiments, the...</p>
 
 </div>
 </div>
@@ -256,8 +260,8 @@ $$ \mathrm{TF} + \mathrm{TFBS} \underset{\koff}{\overset{\kon}{\rightleftarrows}
 <div class="flash">
     <svg class="octicon octicon-info" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
     <strong>Note: </strong>We will assume the <a href="https://en.wikipedia.org/wiki/Law_of_mass_action">Law of Mass Action</a> for well-mixed solutions throughout. 
-</div>
-The natural rates are the rate of TF binding $\kon$ and unbinding $\koff$. Equilibrium is reached when binding and unbinding are balanced:</p>
+</div></p>
+<p>The natural rates are the rate of TF binding $\kon$ and unbinding $\koff$. Equilibrium is reached when binding and unbinding are balanced:</p>
 <p>
 $$\frac{d[\mathrm{TF\colon TFBS}]}{dt} = k_{\mathrm{on}}[\mathrm{TF}][\mathrm{TFBS}] - k_{\mathrm{off}}[\mathrm{TF\colon TFBS}] = 0 \text{ at equilibrium}$$
 
@@ -280,12 +284,12 @@ $$\frac{[\mathrm{TF\colon TFBS}]}{[\mathrm{TFBS}]_{0}} = \frac{[\mathrm{TF}]}{k_
 <div class="flash">
     <svg class="octicon octicon-info" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
     <strong>Note: </strong>We could also ask for this expression in terms of $[\mathrm{TF}]_0 = [\mathrm{TF}] + [\mathrm{TF\colon TFBS}]$ however, since we&#8217;re considering a single TFBS, $[\mathrm{TF\colon TFBS}]$ is at most 1, and so $[\mathrm{TF}]_0 \approx [\mathrm{TF}]$. In instances of ligand-receptor binding in which that approximation cannot be made, the fraction bound is a messy quadratic. <a href="https://www.med.upenn.edu/ostaplab/assets/user-content/documents/simpleligandbindingequations.pdf">Derivation here</a>. 
-</div>
-In the thermodynamic description, the parameters are Gibbs free energies $\Delta G$. Let's follow the derivation from <a href="http://www.rpgroup.caltech.edu/pboc2/">Physical Biology of the Cell</a> (pp. 242) and consider the number microstates underlying each of the of bound and unbound macrostates, and their energies.</p>
+</div></p>
+<p>In the thermodynamic description, the parameters are Gibbs free energies $\Delta G$. Let's follow the derivation from <a href="http://www.rpgroup.caltech.edu/pboc2/">Physical Biology of the Cell</a> (pp. 242) and consider the number microstates underlying each of the of bound and unbound macrostates, and their energies.</p>
 <p>In order to count microstates, we imagine distributing $L$ TF molecules across a space-filling lattice with $\Omega$ sites. The energy of a TF in solution is $\varepsilon_{\mathrm{solution}}$ and the energy of a bound TF is $\varepsilon_{\mathrm{bound}}$. $\beta$ is the constant $1/k_b T$ where $k_b$ is Boltzmann's constant and $T$ is the temperature.</p>
 <p><figure>
   
-    <img class="docimage" src="/back_of_my_envelope/images/copied_from_nb/../data/equilibrium_TFs/single_TF_thermodynamic.png" alt="" style="max-width: 1200/px" />
+    <img class="docimage" src="/back_of_my_envelope/images/copied_from_nb/../data/equilibrium_TFs/single_TF_thermodynamic.png" alt="" style="max-width: 1000/px" />
     
     
 </figure>
@@ -304,7 +308,7 @@ $$p_b=\frac{ \colorbox{Seashell}{$\frac{\Omega^{(L-1)}}{(L-1)!} e^{-\beta [(L-1)
 $$p_b = \frac{[\mathrm{TF}]e^{-\beta \Delta \varepsilon}}{1+[\mathrm{TF}]e^{-\beta \Delta \varepsilon}} \cdot \color{DarkRed}\frac{e^{\beta \Delta \varepsilon}}{e^{\beta \Delta \varepsilon}} \color{black} = \frac{[\mathrm{TF}]}{e^{\beta \Delta \varepsilon}+[\mathrm{TF}]}$$
 </p>
 <p>From which we recapitulate an important correspondence between kinetics and thermodynamics at equilibrium: $ k_d = e^{\beta \Delta \varepsilon} = e^{\Delta \varepsilon / k_bT} $ more commonly written for different units as $k = e^{-\Delta G / RT}$.</p>
-<p>The takeaway is that both the kinetic and thermodynamic formalisms produce an equivalent expression for the probability of each configuration, parameterized respectively by $k_d$ and $\Delta G$.</p>
+<p>The takeaway is that both the kinetic and thermodynamic formalisms produce an equivalent expression for the probabilities of each of the bound and unbound configurations, parameterized respectively by $k_d$ and $\Delta G$.</p>
 
 </div>
 </div>
@@ -329,13 +333,78 @@ $$p_b = \frac{[\mathrm{TF}]e^{-\beta \Delta \varepsilon}}{1+[\mathrm{TF}]e^{-\be
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Indirect-cooperativity">Indirect cooperativity<a class="anchor-link" href="#Indirect-cooperativity"> </a></h3>
+<p>Suppose now that two TFs bind adjacent segments of DNA in such a way that the binding of either facilitates the binding of the other. We call this direct cooperativity.</p>
+<p>As before, we enumerate the configurations, their multiplicities, and their energies. We'll call the TFs A and B. We'll denote their counts as $A$ and $B$. The energy of a TF in solution will once more be $A_s$ and bound to its cognate TFBS $A_b$. The energy of cooperativity will be $C_{AB}$.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Competitive-TF-binding">Competitive TF binding<a class="anchor-link" href="#Competitive-TF-binding"> </a></h3>
+<table style="float:left; width:100%">
+    <tr style="text-align:center; font-size:1.5rem; font-family:serif"><td>State</td><td>Energy</td><td>Multiplicity</td><td>Weight</td></tr>
+    <tr><td><img src="../data/equilibrium_TFs/naked.png" width="300" /></td>
+        <td>$A \cdot A_s + B \cdot B_s$</td>
+        <td>$\frac{\Omega!}{(\Omega - A - B)!A!B!} \approx \frac{\Omega^{A+B}}{A!B!}$</td>
+        <td>$\frac{\Omega^{A+B}}{A!B!} \cdot e^{-\beta \left[ A \cdot A_s + B \cdot B_s \right]}$</td>
+    </tr>
+    <tr><td><img src="../data/equilibrium_TFs/A.png" width="300" /></td>
+        <td>$(A - 1) A_s + A_b + B \cdot B_s$</td>
+        <td>$\frac{\Omega!}{(\Omega - (A - 1) - B)!(A-1)!B!} \approx \frac{\Omega^{A+B-1}}{(A-1)!B!}$</td>
+        <td>$\frac{\Omega^{A+B-1}}{(A-1)!B!} \cdot e^{-\beta \left[ (A - 1) A_s + A_b + B \cdot B_s \right]}$</td>
+    </tr>
+    <tr><td><img src="../data/equilibrium_TFs/B.png" width="300" /></td>
+        <td>$A \cdot A_s + (B - 1) B_s + B_b$</td>
+        <td>$\frac{\Omega!}{(\Omega - A - (B - 1))!A!(B-1)!} \approx \frac{\Omega^{A+B-1}}{A!(B-1)!}$</td>
+        <td>$\frac{\Omega^{A+B-1}}{A!(B-1)!} \cdot e^{-\beta \left[ A \cdot A_s + (B - 1) B_s + B_b \right]}$</td>
+    </tr>
+    <tr><td><img src="../data/equilibrium_TFs/AB.png" width="300" /></td>
+        <td>$(A - 1) A_s + A_b + (B - 1) B_s + B_b + C_{AB}$</td>
+        <td>$\frac{\Omega!}{(\Omega - (A - 1) - (B-1))!(A-1)!(B-1)!} \approx \frac{\Omega^{A+B-2}}{(A-1)!(B-1)!}$</td>
+        <td>$\frac{\Omega^{A+B-2}}{(A-1)!(B-1)!} \cdot e^{-\beta \left[ (A - 1) A_s + A_b + (B - 1) B_s + B_b + C_{AB} \right]}$</td>
+    </tr>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The partition function is the sum of the weights:</p>
+$$ Z = \frac{\Omega^{A+B}}{A!B!} \cdot e^{-\beta \left[ A \cdot A_s + B \cdot B_s \right]} +
+\frac{\Omega^{A+B-1}}{(A-1)!B!} \cdot e^{-\beta \left[ (A - 1) A_s + A_b + B \cdot B_s \right]} +
+\frac{\Omega^{A+B-1}}{A!(B-1)!} \cdot e^{-\beta \left[ A \cdot A_s + (B - 1) B_s + B_b \right]} +
+\frac{\Omega^{A+B-2}}{(A-1)!(B-1)!} \cdot e^{-\beta \left[ (A - 1) A_s + A_b + (B - 1) B_s + B_b + C_{AB} \right]}$$<p>Which we can greatly simplify by multiplying the entire expression by the reciprocal of the "base state" weight, $\color{DarkRed}\frac{A!B!}{\Omega^{A+B}} \cdot e^{\beta \left[ A \cdot A_s + B \cdot B_s \right]}$, normalizing that weight to 1:</p>
+$$ Z = 1 +
+\frac{A}{\Omega} \cdot e^{-\beta \left[ A_b-A_s \right]} +
+\frac{B}{\Omega} \cdot e^{-\beta \left[ B_b-B_s \right]} +
+\frac{A \cdot B}{\Omega^2} \cdot e^{-\beta \left[ A_b-A_s+B_b-B_s+C_{AB} \right]}$$<p>Taking the definition $[A] = A/\Omega$ and $\Delta G_A = A_b-A_s$ produces:</p>
+$$ Z = 1 +
+[A] e^{-\beta \left[ \Delta G_A \right]} +
+[B] e^{-\beta \left[ \Delta G_B \right]} +
+[A][B] e^{-\beta \left[ \Delta G_A+\Delta G_B+C_{AB} \right]}$$<p>Then the probability of any state is just the weight of that state divided by the partition function expression $Z$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>References</strong>:</p>
+<ul>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/15797194/">Transcriptional regulation by the numbers: models</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Competitive-binding">Competitive binding<a class="anchor-link" href="#Competitive-binding"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Indirect-cooperativity">Indirect cooperativity<a class="anchor-link" href="#Indirect-cooperativity"> </a></h3>
 </div>
 </div>
 </div>
