@@ -116,6 +116,7 @@ kramdown:
   input: GFM
   auto_ids: true
   hard_wrap: false
+  parse_block_html: true
   syntax_highlighter: rouge
 
 toc:
