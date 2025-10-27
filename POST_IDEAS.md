@@ -6,7 +6,8 @@ the three formalisms for modeling stochastic chemical reactions:
 - SSA / Gillespie / Kinetic Monte Carlo
 - Master Equation
 - Chemical Langevin
-
+https://www.sciencedirect.com/science/article/pii/S2001037014000403#bb0135
+https://aip.scitation.org/doi/10.1063/1.4801941
 
 integration vs solving an ODE numerically
 

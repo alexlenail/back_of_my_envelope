@@ -39,8 +39,8 @@ baseurl: "/back_of_my_envelope" # the subpath of your site, e.g. "/blog".
 # Github and twitter are optional:
 minima:
   social_links:
-    twitter: alexlenail
-    github: alexlenail
+    - { platform: github,  user_url: "https://github.com/alexlenail" }
+    - { platform: twitter, user_url: "https://twitter.com/alexlenail" }
 
 # Set this to true to get LaTeX math equation support
 use_math: true
@@ -64,6 +64,7 @@ exclude:
   - docker-compose.yml
   - action.yml
   - Makefile
+  - .git
 
 # this setting allows you to keep pages organized in the _pages folder
 include:
