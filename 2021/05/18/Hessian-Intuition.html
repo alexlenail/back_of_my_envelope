@@ -150,7 +150,7 @@ window.onload = wrap_img;
            • <span class="read-time" title="Estimated read time">
     
     
-      13 min read
+      12 min read
     
 </span></p>
 
@@ -178,59 +178,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">import</span> <span class="n">Pkg</span><span class="p">,</span> <span class="n">InteractiveUtils</span>
-
-<span class="n">InteractiveUtils</span><span class="o">.</span><span class="n">versioninfo</span><span class="p">()</span>
-
-<span class="n">println</span><span class="p">(</span><span class="s">&quot;Active project: &quot;</span><span class="p">,</span> <span class="n">Base</span><span class="o">.</span><span class="n">active_project</span><span class="p">())</span>
-<span class="n">println</span><span class="p">(</span><span class="s">&quot;Sys.BINDIR: &quot;</span><span class="p">,</span> <span class="n">Sys</span><span class="o">.</span><span class="n">BINDIR</span><span class="p">)</span>
-<span class="n">println</span><span class="p">(</span><span class="s">&quot;Base.julia_cmd(): &quot;</span><span class="p">,</span> <span class="n">Base</span><span class="o">.</span><span class="n">julia_cmd</span><span class="p">())</span>
-
-<span class="n">Pkg</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>  <span class="c"># must show PlotlyBase in THIS env</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-        </div>
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Julia Version 1.5.4
-Commit 69fcb5745b (2021-03-11 19:13 UTC)
-Platform Info:
-  OS: macOS (x86_64-apple-darwin18.7.0)
-  CPU: Apple M1 Max
-  WORD_SIZE: 64
-  LIBM: libopenlibm
-  LLVM: libLLVM-9.0.1 (ORCJIT, westmere)
-Active project: /Users/alex/Documents/back_of_my_envelope/_notebooks/Project.toml
-Sys.BINDIR: /Applications/Julia-1.5.app/Contents/Resources/julia/bin
-Base.julia_cmd(): `<span class="ansi-underline">/Applications/Julia-1.5.app/Contents/Resources/julia/bin/julia</span> <span class="ansi-underline">-Cnative</span> <span class="ansi-underline">-J/Applications/Julia-1.5.app/Contents/Resources/julia/lib/julia/sys.dylib</span> <span class="ansi-underline">-g1</span> <span class="ansi-underline">--color=yes</span>`
-<span class="ansi-green-intense-fg ansi-bold">Status</span> `~/Documents/back_of_my_envelope/_notebooks/Project.toml`
- <span class="ansi-black-intense-fg"> [a03496cd] </span><span class="ansi-white-fg">PlotlyBase v0.7.3</span>
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="c"># # imports</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="c"># imports</span>
 <span class="k">using</span> <span class="n">PlotlyBase</span><span class="p">,</span> <span class="n">IJulia</span>
 
 <span class="c"># Define once at the top of the notebook</span>
@@ -254,6 +202,7 @@ Base.julia_cmd(): `<span class="ansi-underline">/Applications/Julia-1.5.app/Cont
 </div>
 </div>
 
+        </div>
 <div class="output_wrapper">
 <div class="output">
 
