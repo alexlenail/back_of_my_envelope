@@ -1,4 +1,7 @@
 notebook_data/*
+.bundle/*
+.jupyter/*
+deal_with_later/*
 
 
 *.swp

@@ -1,10 +1,10 @@
-version: "3"
 services:
   fastpages: &fastpages
-    # platform: linux/amd64
+    user: "${UID}:${GID}"
     working_dir: /data
     environment:
-        - INPUT_BOOL_SAVE_MARKDOWN=false
+      - INPUT_BOOL_SAVE_MARKDOWN=false
+      - HOME=/data
     build:
       context: ./_action_files
       dockerfile: ./Dockerfile
@@ -24,25 +24,49 @@ services:
 
   notebook:
     <<: *fastpages
-    command: jupyter notebook --allow-root --no-browser --ip=0.0.0.0 --port=8080 --NotebookApp.token='' --NotebookApp.password=''
+    environment:
+      - HOME=/data
+      - JUPYTER_RUNTIME_DIR=/data/.jupyter/runtime
+      - JUPYTER_DATA_DIR=/data/.jupyter/data
+      - JUPYTER_CONFIG_DIR=/data/.jupyter
+    command: >
+      sh -lc "mkdir -p /data/.jupyter/runtime &&
+              jupyter notebook
+              --no-browser --ip=0.0.0.0 --port=8080
+              --NotebookApp.token='' --NotebookApp.password=''
+              --NotebookApp.notebook_dir=/data
+              --NotebookApp.runtime_dir=/data/.jupyter/runtime"
     ports:
       - "8080:8080"
 
   watcher:
     <<: *fastpages
     command: watchmedo shell-command --command /fastpages/action_entrypoint.sh --pattern *.ipynb --recursive --drop
-    network_mode: host # for GitHub Codespaces https://github.com/features/codespaces/
+    network_mode: host
 
   jekyll:
-    # platform: linux/amd64
-    user: root
+    platform: linux/amd64
+    user: "${UID}:${GID}"
     working_dir: /data
     image: fastai/fastpages-jekyll
     restart: unless-stopped
     ports:
       - "4000:4000"
+    environment:
+      - HOME=/data
+      - BUNDLE_PATH=/usr/local/bundle
+      - BUNDLE_DISABLE_SHARED_GEMS=1
     volumes:
       - .:/data/
+      - jekyll_bundle:/usr/local/bundle
     command: >
-      bash -c "chmod -R u+rwx . && jekyll serve --host 0.0.0.0 --trace --strict_front_matter"
+      bash -lc "bundle exec jekyll serve --verbose --host 0.0.0.0 --trace --strict_front_matter"
 
+# helper:
+# export UID=$(id -u)
+# export GID=$(id -g)
+# docker compose down --remove-orphans
+# docker compose up --build
+
+volumes:
+  jekyll_bundle:

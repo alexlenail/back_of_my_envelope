@@ -122,3 +122,5 @@ toc:
   ordered_list: true
   max_level: 4
 
+sass:
+  sourcemap: never
