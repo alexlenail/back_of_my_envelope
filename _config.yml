@@ -81,6 +81,8 @@ html_escape:
   description: false
 
 # Everything below here should be left alone. Modifications may break fastpages
+# incremental: true
+# livereload: true
 future: true
 theme: minima
 plugins:
@@ -123,4 +125,5 @@ toc:
   max_level: 4
 
 sass:
+  sass_dir: _sass
   sourcemap: never

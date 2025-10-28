@@ -11,14 +11,14 @@ $lightbrown: #7d7964;
 
 $default_comments_color: #408080;
 
-pre, code {
+pre, code, .highlight {
     // background-color: #f8f9fa !important;
     // background-color: ##f1f1f1 !important;
     // background-color: #f2f3ff !important;
     // background-color: #fafafd !important;
     background-color: #fff !important;
     // background-color: #fdfbf1 !important;
-    border: none;
+    border: none !important;
     // border-top: 1px solid #f1eda7;
     // border-bottom: 1px solid #f1eda7;
 }
