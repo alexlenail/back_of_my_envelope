@@ -150,7 +150,7 @@ window.onload = wrap_img;
            • <span class="read-time" title="Estimated read time">
     
     
-      1 min read
+      2 min read
     
 </span></p>
 
@@ -205,7 +205,14 @@ window.onload = wrap_img;
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Fourier-Basis">Fourier Basis<a class="anchor-link" href="#Fourier-Basis"> </a></h1>
+<p>Today in class, we discussed orthogonal functions. I find it beautiful that the geometry of vectors extends so naturally to functions, viewed as infinite vectors. I wanted to work through a simple example to make the connection concrete.</p>
+<p>Orthogonal vectors have a dot product of zero. For real-valued functions, we can replace the sum in a dot product with an integral:</p>
+<p>
+$$\langle f, g \rangle = \int_a^b f(x)g(x)\,dx$$
+</p>
+<p>If this is zero, $f$ and $g$ are orthogonal on $[a,b]$.</p>
+<h2 id="A-few-modes-from-the-Fourier-basis">A few modes from the Fourier basis<a class="anchor-link" href="#A-few-modes-from-the-Fourier-basis"> </a></h2><p>Let's plot $f_k(x) = \sin(kx) + \cos(kx)$ for a few integer frequencies on $[0,2\pi]$.</p>
+
 </div>
 </div>
 </div>
@@ -279,6 +286,13 @@ window.onload = wrap_img;
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now multiply two different modes point by point and integrate their product:</p>
+
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -349,14 +363,21 @@ window.onload = wrap_img;
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>"fourier modes as eigenfunctions of the derivative operator" What?</p>
+<p>The positive and negative areas cancel. The numerical result above is zero, up to rounding: these two functions are orthogonal on $[0,2\pi]$.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Polynomial-Bases">Polynomial Bases<a class="anchor-link" href="#Polynomial-Bases"> </a></h1>
+<h2 id="&quot;Fourier-modes-are-eigenfunctions-of-the-derivative-operator&quot;">"Fourier modes are eigenfunctions of the derivative operator"<a class="anchor-link" href="#&quot;Fourier-modes-are-eigenfunctions-of-the-derivative-operator&quot;"> </a></h2><p>I overheard someone say this sentence today, and the connection caught my attention. What does it mean for a function to be an eigenvector of differentiation?</p>
+<p>An eigenfunction is a function an operator simply multiplies by a constant. Write a Fourier mode as $\phi_k(x) = e^{ikx} = \cos(kx) + i\sin(kx)$. Then:</p>
+<p>
+$$\frac{d}{dx}\phi_k(x) = ik\phi_k(x)$$
+</p>
+<p>Differentiation gives back the same function, multiplied by $ik$! This is the function version of $Av = \lambda v$.</p>
+<p>Sines and cosines individually swap under differentiation; both are eigenfunctions of the second derivative, with eigenvalue $-k^2$. In the complex Fourier basis, differentiating means multiplying each mode's coefficient by $ik$.</p>
+
 </div>
 </div>
 </div>
