@@ -1067,7 +1067,7 @@ f_{xx}(\bold{v_0}) &amp; f_{yx}(\bold{v_0}) \\
 f_{xy}(\bold{v_0}) &amp; f_{yy}(\bold{v_0})
 \end{bmatrix}$$<p>The Hessian shows up in the quadratic approximation (second order Taylor expansion) of multivariate functions around a particular point $\bold{v_0}$:</p>
 <p>
-$$ Q_f(\bold{v_0}) = \color{green} f(\bold{v_0}) \color{black} + \color{blue} \nabla_f(\bold{v_0}) \cdot (\bold{v} - \bold{v_0}) \color{black} + \color{indigo} {1 \over 2}(\bold{v} - \bold{v_0})^\intercal \left[ \bold{H}_f(\bold{v_0}) \right] (\bold{v} - \bold{v_0})$$
+$$ Q_f(\bold{v}; \bold{v_0}) = \color{green} f(\bold{v_0}) \color{black} + \color{blue} \nabla_f(\bold{v_0}) \cdot (\bold{v} - \bold{v_0}) \color{black} + \color{indigo} {1 \over 2}(\bold{v} - \bold{v_0})^\intercal \left[ \bold{H}_f(\bold{v_0}) \right] (\bold{v} - \bold{v_0})$$
 </p>
 <p>And we might ask: how does this matrix scale $(\bold{v} - \bold{v_0})$? Let's try to build some intuition:</p>
 <p>Suppose we multiply some vector against that Hessian Matrix:</p>
@@ -1077,19 +1077,19 @@ f_{xx}(\bold{v_0}) &amp; f_{yx}(\bold{v_0}) \\
 f_{xy}(\bold{v_0}) &amp; f_{yy}(\bold{v_0})
 \end{bmatrix} \cdot \begin{bmatrix} x \\ y \end{bmatrix} = 
 \begin{bmatrix} 
-f_{xx} \cdot x + f_{xy} \cdot y \\ 
-f_{yy} \cdot y + f_{yx} \cdot x \end{bmatrix} = 
+f_{xx} \cdot x + f_{yx} \cdot y \\ 
+f_{yy} \cdot y + f_{xy} \cdot x \end{bmatrix} = 
 $$$$
 \begin{bmatrix} 
 ( \text{the rate of change of the slope in the x direction as you move in the x direction} ) ( \text{a distance in the x direction} ) + \\ ( \text{the rate of change of the slope in the x direction as you move in the y direction} ) ( \text{a distance in the y direction} ) \\ \\
 ( \text{the rate of change of the slope in the y direction as you move in the y direction} ) ( \text{a distance in the y direction} ) + \\( \text{the rate of change of the slope in the y direction as you move in the x direction} ) ( \text{a distance in the x direction} )
 \end{bmatrix} = $$$$ 
 \begin{bmatrix} 
-\text{the approximate slope in the x direction at the distance x from }x_0 \\
-\text{the approximate slope in the y direction at the distance y from }y_0
+\text{the approximate change in slope in the x direction at the distance x from }x_0 \\
+\text{the approximate change in slope in the y direction at the distance y from }y_0
 \end{bmatrix} = 
 $$<p>
-$$ \text{what a second-order approximation of } f \text{ suggests the gradient is at } \bold{v_0} + \begin{bmatrix} x \\ y \end{bmatrix} $$
+$$ \text{what a second-order approximation of } f \text{ suggests the change in gradient is from } \bold{v_0} \text{ to } \bold{v_0} + \begin{bmatrix} x \\ y \end{bmatrix} $$
 </p>
 <p>However, let's note that the quadratic approximation of $f$ includes as <a href="https://en.wikipedia.org/wiki/Quadratic_form">quadratic form</a> $(\bold{v} - \bold{v_0})^\intercal \left[ \bold{H}_f(\bold{v_0}) \right] (\bold{v} - \bold{v_0})$, not just a matrix-vector product. Applying this second product operation results in a scalar, which is the change in the value of the function as a result of extrapolating the (second-order) curvature of the function at $\bold{v_0}$ out towards $\bold{v} - \bold{v_0}$.</p>
 
@@ -1106,32 +1106,32 @@ $$ \text{what a second-order approximation of } f \text{ suggests the gradient i
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Newton's method for optimization is an iteration of</p>
 <ul>
-<li>forming the quadratic approximation $Q_f(\bold{v_0})$ of a function around the current point. </li>
+<li>forming the quadratic approximation $Q_f(\bold{v}; \bold{v_0})$ of a function around the current point. </li>
 <li>jumping to the min/max of the paraboloid approximation for the next iteration. </li>
 </ul>
 <p>This requires us to identify the min/max of the second-order approximation of $f$. Recall, the quadratic approximation (second order taylor expansion) of $f$ at a particular point $\bold{v_0}$ is</p>
 <p>
-$$ Q_f(\bold{v_0}) = \color{green} f(\bold{v_0}) \color{black} + \color{blue} \nabla_f(\bold{v_0}) \cdot (\bold{v} - \bold{v_0}) \color{black} + \color{indigo} {1 \over 2}(\bold{v} - \bold{v_0})^\intercal \left[ \bold{H}_f(\bold{v_0}) \right] (\bold{v} - \bold{v_0})$$
+$$ Q_f(\bold{v}; \bold{v_0}) = \color{green} f(\bold{v_0}) \color{black} + \color{blue} \nabla_f(\bold{v_0}) \cdot (\bold{v} - \bold{v_0}) \color{black} + \color{indigo} {1 \over 2}(\bold{v} - \bold{v_0})^\intercal \left[ \bold{H}_f(\bold{v_0}) \right] (\bold{v} - \bold{v_0})$$
 </p>
-<p>Searching for the extrema of this approximation, we can take $\nabla \left[ Q_f(v_0) \right] = 0$.</p>
+<p>Searching for the extrema of this approximation, we differentiate with respect to $\bold{v}$, holding $\bold{v_0}$ fixed, and take $\nabla \left[ Q_f(\bold{v}; \bold{v_0}) \right] = 0$.</p>
 <ul>
 <li>$ \nabla \left[ \color{green} f(\bold{v_0}) \color{black} \right] = 0$</li>
 <li>$ \nabla \left[ \color{blue} \nabla_f(\bold{v_0}) \cdot (\bold{v} - \bold{v_0}) \color{black} \right] = \nabla_f(\bold{v_0})$</li>
-<li>$ \nabla \left[ \color{indigo} {1 \over 2}(\bold{v} - \bold{v_0})^\intercal \left[ \bold{H}_f(\bold{v_0}) \right] (\bold{v}- \bold{v_0}) \color{black} \right] = {1 \over 2} \left( \left[ \bold{H}_f(\bold{v_0}) \right] \bold{v}+ \left[ \bold{H}_f(\bold{v_0}) \right]^\intercal \right) \bold{v}$ </li>
+<li>$ \nabla \left[ \color{indigo} {1 \over 2}(\bold{v} - \bold{v_0})^\intercal \left[ \bold{H}_f(\bold{v_0}) \right] (\bold{v}- \bold{v_0}) \color{black} \right] = {1 \over 2} \left( \left[ \bold{H}_f(\bold{v_0}) \right] + \left[ \bold{H}_f(\bold{v_0}) \right]^\intercal \right) (\bold{v} - \bold{v_0})$ </li>
 </ul>
-<p>We can simplify ${1 \over 2} \left( \left[ \bold{H}_f(\bold{v_0}) \right] \bold{v}+ \left[ \bold{H}_f(\bold{v_0}) \right]^\intercal \right) \bold{v}$ further, because $\left[ \bold{H}_f(\bold{v_0}) \color{black} \right] = \left[ \bold{H}_f(\bold{v_0}) \right]^\intercal$, because of the symmetry property of second derivatives, so this expression simplifies to ${1 \over 2} \left( 2 \left[ \bold{H}_f(\bold{v_0}) \right] \right) \bold{v}  = \left[ \bold{H}_f(\bold{v_0}) \right] \bold{v}$.</p>
-<p>So all together, $\nabla \left[ Q_f(\bold{v_0}) \right] = \color{blue} \nabla_f(\bold{v_0}) \color{black} + \color{indigo} \left[ \bold{H}_f(\bold{v_0}) \right] \bold{v}$.</p>
-<p>Well, $\nabla_f(\bold{v_0}) + \left[ \bold{H}_f(\bold{v_0}) \right] \bold{v} = 0$ when:</p>
+<p>We can simplify ${1 \over 2} \left( \left[ \bold{H}_f(\bold{v_0}) \right] + \left[ \bold{H}_f(\bold{v_0}) \right]^\intercal \right) (\bold{v} - \bold{v_0})$ further, because $\left[ \bold{H}_f(\bold{v_0}) \color{black} \right] = \left[ \bold{H}_f(\bold{v_0}) \right]^\intercal$, because of the symmetry property of second derivatives, so this expression simplifies to ${1 \over 2} \left( 2 \left[ \bold{H}_f(\bold{v_0}) \right] \right) (\bold{v} - \bold{v_0})  = \left[ \bold{H}_f(\bold{v_0}) \right] (\bold{v} - \bold{v_0})$.</p>
+<p>So all together, $\nabla \left[ Q_f(\bold{v}; \bold{v_0}) \right] = \color{blue} \nabla_f(\bold{v_0}) \color{black} + \color{indigo} \left[ \bold{H}_f(\bold{v_0}) \right] (\bold{v} - \bold{v_0})$.</p>
+<p>Well, $\nabla_f(\bold{v_0}) + \left[ \bold{H}_f(\bold{v_0}) \right] (\bold{v} - \bold{v_0}) = 0$ when:</p>
 $$
 \begin{aligned}
-\left[ \bold{H}_f(\bold{v_0}) \right] \bold{v} &amp;= -\nabla_f(\bold{v_0}) \\
-\bold{v} &amp;= - \left[ \bold{H}_f(\bold{v_0}) \right]^{-1} \cdot \nabla_f(\bold{v_0})
+\left[ \bold{H}_f(\bold{v_0}) \right] (\bold{v} - \bold{v_0}) &amp;= -\nabla_f(\bold{v_0}) \\
+\bold{v} &amp;= \bold{v_0} - \left[ \bold{H}_f(\bold{v_0}) \right]^{-1} \cdot \nabla_f(\bold{v_0})
 \end{aligned}
 $$<p>So $\bold{v}$ is the vector which denotes the extremum of the quadratic approximation of $f$ around $\bold{v_0}$. The familiar Newton method expression pops out of our above derivation:</p>
 <p>
 $$\bold{v_{k+1}} = \bold{v_k} - \left[ \bold{H}_f(\bold{v_k}) \right]^{-1} \nabla_f(\bold{v_k})$$
 </p>
-<p>And now we know that this expression which seemed to come out of nowhere $\left[ \bold{H}_f(\bold{v_k}) \right]^{-1} \nabla_f(\bold{v_k})$ including an inverse Hessian (!!) is really just the $\bold{v}$ which solves $\nabla \left[ Q_f(v_0) \right] = 0$.</p>
+<p>And now we know that this expression which seemed to come out of nowhere $\bold{v_k} - \left[ \bold{H}_f(\bold{v_k}) \right]^{-1} \nabla_f(\bold{v_k})$ including an inverse Hessian (!!) is really just the $\bold{v}$ which solves $\nabla \left[ Q_f(\bold{v}; \bold{v_0}) \right] = 0$.</p>
 
 </div>
 </div>
@@ -1140,10 +1140,10 @@ $$\bold{v_{k+1}} = \bold{v_k} - \left[ \bold{H}_f(\bold{v_k}) \right]^{-1} \nabl
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="References">References<a class="anchor-link" href="#References"> </a></h2><ul>
 <li><a href="https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivative-and-gradient-articles/a/second-partial-derivatives">Khan Academy: Second-Order Partial Derivatives</a></li>
-<li><a href="http://facstaff.cbu.edu/wschrein/media/M232%20Notes/M232L73.pdf">Walter Schreiner's course notes</a>: intuition for second order partial derivatives</li>
+<li><a href="https://web.archive.org/web/20210319214507/http://facstaff.cbu.edu/wschrein/media/M232%20Notes/M232L73.pdf">Walter Schreiner's course notes</a>: intuition for second order partial derivatives</li>
 <li><a href="https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives/quadratic-approximations/a/the-hessian">Khan Academy: The Hessian</a></li>
 <li><a href="https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives#quadratic-approximations">Khan Academy: Quadratic Approximations</a></li>
-<li><a href="http://people.duke.edu/~kh269/teaching/b553/newtons_method.pdf">Kris Hauser's course notes</a>: derivation of Newton's Method (especially page 4)</li>
+<li><a href="https://web.archive.org/web/20210702192018/http://people.duke.edu/~kh269/teaching/b553/newtons_method.pdf">Kris Hauser's course notes</a>: derivation of Newton's Method (especially page 4)</li>
 </ul>
 
 </div>
