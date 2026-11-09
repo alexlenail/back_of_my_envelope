@@ -93,28 +93,30 @@ window.onload = wrap_img;
     });
 </script>
 
+
+    <link rel="stylesheet" href="/back_of_my_envelope/assets/css/home.css">
+  
+  
 </head>
-<body><header class="site-header">
+<body class="home-page">
 
-  <div class="wrapper">
-    <a class="site-title" rel="author" href="/back_of_my_envelope/">Back of my Envelope</a>
-      <nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon"></span>
-        </label>
+    
+      <header class="site-header">
+        <div class="wrapper">
+          <a class="site-title" rel="author" href="/back_of_my_envelope/">Back of my Envelope</a>
+          <nav class="site-nav" aria-label="Main navigation">
+            <div class="nav-items">
+              <a class="nav-item" href="/back_of_my_envelope/about/">About</a>
+              <a class="nav-item" href="/back_of_my_envelope/old/">Old Blog</a>
+            </div>
+          </nav>
+        </div>
+      </header>
+    
 
-        <div class="nav-items">
-  <a class="nav-item" href="/back_of_my_envelope/about/">About</a>
-  <a class="nav-item" href="/back_of_my_envelope/old/">Old Blog</a>
-</div>
-
-      </nav>
-  </div>
-</header>
-<main class="page-content" aria-label="Content">
+    <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home flex-justify-end">
+        <div class="home notebook-home">
 
 
 
@@ -134,45 +136,66 @@ window.onload = wrap_img;
 
    <!-- Assemble final sorted posts array -->
   
-  <ul class="post-list"><li><div class="Box box-shadow-medium rounded-1 col-12"><div class="col-8 d-table-cell p-3">
-        <h3>
-          <a class="post-link" href="/back_of_my_envelope/2022/01/12/equilibrium_TFs.html">
-            Equilibrium Binding of Transcription Factors
-          </a>
-        </h3>
-        <p class="post-meta-description">If you know TF concentrations, binding site affinities, and cooperativities, can you predict probabilities for each configuration?</p>
-          <p class="post-meta">Jan 12, 2022</p>
-      </div>
-  </div></li><li><div class="Box box-shadow-medium rounded-1 col-12"><div class="col-8 d-table-cell p-3">
-        <h3>
-          <a class="post-link" href="/back_of_my_envelope/2021/06/23/Enzyme-Kinetic-Parameter-Inference.html">
-            Enzyme Kinetic Parameter Inference
-          </a>
-        </h3>
-        <p class="post-meta-description">Supposing you observe a timeseries of concentrations of metabolites, can you infer the kinetic parameters for the enzyme?</p>
-          <p class="post-meta">Jun 23, 2021</p>
-      </div>
-  </div></li><li><div class="Box box-shadow-medium rounded-1 col-12"><div class="col-8 d-table-cell p-3">
-        <h3>
-          <a class="post-link" href="/back_of_my_envelope/2021/05/18/Hessian-Intuition.html">
-            Intuition for Second Order Partial Derivatives and the Hessian Matrix
-          </a>
-        </h3>
-        <p class="post-meta-description">But what is a Hessian, really?</p>
-          <p class="post-meta">May 18, 2021</p>
-      </div>
-  </div></li><li><div class="Box box-shadow-medium rounded-1 col-12"><div class="col-8 d-table-cell p-3">
-        <h3>
-          <a class="post-link" href="/back_of_my_envelope/2020/12/04/orthogonal-functions.html">
-            Orthogonal Functions
-          </a>
-        </h3>
-        <p class="post-meta-description">What does it mean for functions to be orthogonal?</p>
-          <p class="post-meta">Dec 4, 2020</p>
-      </div>
-  </div></li></ul>
+  <ul class="post-list notebook-list"><li><article class="notebook-entry">
+  
+    <a class="notebook-figure" href="/back_of_my_envelope/2022/01/12/equilibrium_TFs.html" tabindex="-1" aria-hidden="true">
+      <img src="/back_of_my_envelope/images/equilibrium_TFs/single_TF_thermodynamic.png" alt="Thermodynamic binding schematic comparing unbound and bound states, their energies, multiplicities, and Boltzmann weights." loading="lazy" decoding="async">
+    </a>
+  
+  <div class="notebook-summary">
+    <h2 class="notebook-title"><a href="/back_of_my_envelope/2022/01/12/equilibrium_TFs.html">Equilibrium Binding of Transcription Factors</a></h2>
+    
+      <p class="notebook-description">If you know TF concentrations, binding site affinities, and cooperativities, can you predict probabilities for each configuration?</p>
+    
+    <p class="notebook-date"><time datetime="2022-01-12T00:00:00-06:00">Jan 12, 2022</time></p>
+  </div>
+</article>
+</li><li><article class="notebook-entry">
+  
+    <a class="notebook-figure" href="/back_of_my_envelope/2021/06/23/Enzyme-Kinetic-Parameter-Inference.html" tabindex="-1" aria-hidden="true">
+      <img src="/back_of_my_envelope/assets/post-previews/550ab52578390b73f823.png" alt="An ensemble of purple, orange, and yellow enzyme kinetics trajectories compared with observed product concentrations." loading="lazy" decoding="async">
+    </a>
+  
+  <div class="notebook-summary">
+    <h2 class="notebook-title"><a href="/back_of_my_envelope/2021/06/23/Enzyme-Kinetic-Parameter-Inference.html">Enzyme Kinetic Parameter Inference</a></h2>
+    
+      <p class="notebook-description">Supposing you observe a timeseries of concentrations of metabolites, can you infer the kinetic parameters for the enzyme?</p>
+    
+    <p class="notebook-date"><time datetime="2021-06-23T00:00:00-05:00">Jun 23, 2021</time></p>
+  </div>
+</article>
+</li><li><article class="notebook-entry">
+  
+    <a class="notebook-figure" href="/back_of_my_envelope/2021/05/18/Hessian-Intuition.html" tabindex="-1" aria-hidden="true">
+      <img src="/back_of_my_envelope/assets/images/hessian-preview.png" alt="A three-dimensional surface and cross sections illustrating curvature, exported from the Hessian notebook&#39;s saved interactive plot." loading="lazy" decoding="async">
+    </a>
+  
+  <div class="notebook-summary">
+    <h2 class="notebook-title"><a href="/back_of_my_envelope/2021/05/18/Hessian-Intuition.html">Intuition for Second Order Partial Derivatives and the Hessian Matrix</a></h2>
+    
+      <p class="notebook-description">But what is a Hessian, really?</p>
+    
+    <p class="notebook-date"><time datetime="2021-05-18T00:00:00-05:00">May 18, 2021</time></p>
+  </div>
+</article>
+</li><li><article class="notebook-entry">
+  
+    <a class="notebook-figure" href="/back_of_my_envelope/2020/12/04/orthogonal-functions.html" tabindex="-1" aria-hidden="true">
+      <img src="/back_of_my_envelope/assets/post-previews/5f67eab0b695917d308b.png" alt="Two oscillating functions and their product, illustrating orthogonality." loading="lazy" decoding="async">
+    </a>
+  
+  <div class="notebook-summary">
+    <h2 class="notebook-title"><a href="/back_of_my_envelope/2020/12/04/orthogonal-functions.html">Orthogonal Functions</a></h2>
+    
+      <p class="notebook-description">What does it mean for functions to be orthogonal?</p>
+    
+    <p class="notebook-date"><time datetime="2020-12-04T00:00:00-06:00">Dec 4, 2020</time></p>
+  </div>
+</article>
+</li></ul>
 
     </div>
+
       </div>
     </main><link id="fa-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css">
 
