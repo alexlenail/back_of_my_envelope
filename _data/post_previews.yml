@@ -1,0 +1,14 @@
+# Zero-based figure positions in each rendered post. New posts automatically
+# use their first figure; image: in notebook metadata overrides this selection.
+2022-01-12-equilibrium_TFs:
+  image: /images/equilibrium_TFs/single_TF_thermodynamic.png
+  alt: "Thermodynamic binding schematic comparing unbound and bound states, their energies, multiplicities, and Boltzmann weights."
+2021-06-23-Enzyme-Kinetic-Parameter-Inference:
+  figure: 14
+  alt: "An ensemble of purple, orange, and yellow enzyme kinetics trajectories compared with observed product concentrations."
+2020-12-04-orthogonal-functions:
+  figure: 1
+  alt: "Two oscillating functions and their product, illustrating orthogonality."
+2021-05-18-Hessian-Intuition:
+  image: /assets/images/hessian-preview.png
+  alt: "A three-dimensional surface and cross sections illustrating curvature, exported from the Hessian notebook's saved interactive plot."

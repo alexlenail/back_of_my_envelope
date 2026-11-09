@@ -12,5 +12,8 @@
   {%- endif -%}
 
   {%- include custom-head.html -%}
+  {% if page.layout == 'home' %}
+    <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
+  {% endif %}
   
 </head>

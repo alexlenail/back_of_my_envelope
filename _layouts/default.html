@@ -3,9 +3,23 @@
 
   {%- include head.html -%}
 
-  <body>
+  <body{% if page.layout == 'home' %} class="home-page"{% endif %}>
 
-    {%- include header.html -%}
+    {% if page.layout == 'home' %}
+      <header class="site-header">
+        <div class="wrapper">
+          <a class="site-title" rel="author" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
+          <nav class="site-nav" aria-label="Main navigation">
+            <div class="nav-items">
+              <a class="nav-item" href="{{ '/about/' | relative_url }}">About</a>
+              <a class="nav-item" href="{{ '/old/' | relative_url }}">Old Blog</a>
+            </div>
+          </nav>
+        </div>
+      </header>
+    {% else %}
+      {%- include header.html -%}
+    {% endif %}
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
